@@ -1,9 +1,16 @@
+// import Button from "./components/UI/Button";
+// import Card from "./components/UI/card";
+import LoginPage from "./pages/Login";
+
+// import LoginForm from "./components/login/LoginForm";
+
 function App() {
   return (
     <>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* <LoginForm /> */}
+      {/* <Button>Add Me</Button> */}
+      {/* <Card /> */}
+      <LoginPage />
     </>
   );
 }

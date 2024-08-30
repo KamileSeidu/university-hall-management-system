@@ -1,0 +1,29 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  font-size: 1.4rem;
+  padding-bottom: 0.5rem;
+}
+
+.input {
+  border: 1px solid #94a3b8;
+  border-radius: 24px;
+  padding: 1rem 1.5rem;
+  font-size: 14px;
+  transition: 0.4s border-color;
+}
+
+.input:focus {
+  border-color: #f31e77;
+  outline: 0;
+  box-shadow: 0 0 0 3px #c90a5a52;
+}
