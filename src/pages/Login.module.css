@@ -17,6 +17,7 @@
 }
 
 .header img {
+  flex-basis: 150px;
   width: 36px;
   height: 40px;
 }
@@ -39,6 +40,10 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .header img {
+    flex-basis: auto;
+  }
+
   .login-section {
     max-width: 700px;
     margin: 0 auto;
@@ -51,6 +56,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .header img {
+    flex-basis: auto;
+  }
+
   .footer {
     left: 50%;
     transform: translate(-50%);
