@@ -6,10 +6,10 @@
 
 /* Typography */
 
-::selection {
+/* ::selection {
   background: var(--color-primary);
   color: #fff;
-}
+} */
 
 html {
   font-size: 62.5%;
