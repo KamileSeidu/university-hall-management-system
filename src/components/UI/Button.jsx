@@ -1,8 +1,14 @@
 import classes from "./Button.module.css";
 
-function Button({ children }) {
+function Button({
+  type = "btn--primary",
+  size = "btn-auto",
+  children,
+  onClick,
+}) {
+  const classNames = `${classes.btn} ${classes[type]} ${classes[size]}`;
   return (
-    <button className={`${classes.btn} ${classes["btn--primary"]}`}>
+    <button onClick={onClick} className={classNames}>
       {children}
     </button>
   );

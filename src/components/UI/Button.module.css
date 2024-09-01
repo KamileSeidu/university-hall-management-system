@@ -1,5 +1,8 @@
 .btn {
-  width: auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   border-radius: 24px;
   outline: 0;
   padding: 1rem 2.5rem;
@@ -11,6 +14,14 @@
   background-color: #f31e77;
   color: white;
   transition: 0.4s background-color;
+}
+
+.btn--primary.btn--auto {
+  width: auto;
+}
+
+.btn--primary.btn--block {
+  width: 100%;
 }
 
 .btn--primary:hover {
