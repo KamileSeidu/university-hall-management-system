@@ -1,11 +1,16 @@
 // import AddStudent from "./pages/AddStudent";
 
-import SearchBox from "./components/Search";
+// import Icon from "./components/UI/icon";
+
+// import SearchBox from "./components/Search";
+import StudentProfile from "./components/StudentProfile";
 
 function App() {
   return (
     <>
-      <SearchBox />
+      {/* <Icon /> */}
+      <StudentProfile />
+      {/* <SearchBox /> */}
       {/* <AddStudent /> */}
     </>
   );
