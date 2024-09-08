@@ -1,0 +1,10 @@
+.grid {
+  display: grid;
+  gap: 20px;
+  flex: 1;
+  margin-right: 20px;
+}
+
+.grid-1x2 {
+  grid-template-columns: auto 450px;
+}

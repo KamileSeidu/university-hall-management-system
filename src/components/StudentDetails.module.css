@@ -1,0 +1,39 @@
+.student-info {
+  padding: 2rem;
+  transition: background-color 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.student-info:hover {
+  background-color: #dddddd;
+}
+
+.action {
+  display: flex;
+  gap: 10px;
+}
+
+.action button:last-child {
+  background-color: orange;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.action button {
+  border: 0;
+  background-color: #0d89f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.action button:hover {
+  background-color: #0572ca;
+}
+.action button:last-child:hover {
+  background-color: rgb(185, 125, 11);
+}
+
+.action img {
+  width: 30px;
+  height: 30px;
+}

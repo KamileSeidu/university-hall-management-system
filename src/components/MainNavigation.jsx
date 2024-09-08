@@ -3,7 +3,6 @@ import Button from "./UI/Button";
 import classes from "./MainNavigation.module.css";
 import logo from "../assets/commonwealth_logo.png";
 import dashboard from "../assets/dashboad.svg";
-import find from "../assets/find.svg";
 import list from "../assets/list.svg";
 import exit from "../assets/exit.svg";
 
@@ -30,13 +29,7 @@ function MainNavigation() {
         <li className={`${classes["nav-item"]}`}>
           <a href="">
             <img src={list} className={classes["nav-icon"]} alt="list-icon" />{" "}
-            Student List
-          </a>
-        </li>
-        <li className={`${classes["nav-item"]}`}>
-          <a href="">
-            <img src={find} className={classes["nav-icon"]} alt="find-icon" />{" "}
-            Find Student
+            Students
           </a>
         </li>
       </ul>

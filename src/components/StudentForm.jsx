@@ -1,14 +1,14 @@
-import classes from "./AddStudentForm.module.css";
-import Card from "../components/UI/Card";
+import classes from "./StudentForm.module.css";
+import Card from "./UI/Card";
 import Button from "./UI/Button";
 
-function AddStudentForm() {
+function StudentForm() {
   return (
     <Card>
       <form action="" className={classes.form}>
         <div className={classes.group}>
           <div className={classes["input-group"]}>
-            <label htmlFor="idNumber">ID</label>
+            <label htmlFor="idNumber">ID Number</label>
             <input type="number" id="idNumber" placeholder="220104304" />
           </div>
           <div className={classes["input-group"]}>
@@ -54,4 +54,4 @@ function AddStudentForm() {
   );
 }
 
-export default AddStudentForm;
+export default StudentForm;

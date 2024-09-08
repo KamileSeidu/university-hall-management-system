@@ -18,9 +18,9 @@
 }
 
 .input-group input:focus {
-  border-color: #f31e77;
+  border-color: #68043b;
   outline: 0;
-  box-shadow: 0 0 0 3px #c90a5a52;
+  box-shadow: 0 0 4px 2px #74064296;
 }
 
 @media screen and (min-width: 768px) {

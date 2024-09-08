@@ -1,9 +1,10 @@
 .nav-bar {
-  max-width: 232px;
+  max-width: 250px;
   margin: 0;
   background-color: #c99649;
   height: 100vh;
   position: relative;
+  margin-right: 20px;
 }
 
 .nav-logo {
@@ -49,10 +50,9 @@
 
 .nav-item a {
   display: flex;
-  font-size: 1.4rem;
-  gap: 10px;
+  font-size: 1.6rem;
+  gap: 15px;
   align-items: center;
-  /* justify-content: center; */
   text-decoration: none;
   color: #0815c1;
   font-weight: 400;

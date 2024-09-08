@@ -1,17 +1,14 @@
-// import AddStudent from "./pages/AddStudent";
-
-// import Icon from "./components/UI/icon";
-
-// import SearchBox from "./components/Search";
-import StudentProfile from "./components/StudentProfile";
+import Students from "./pages/Students";
+import MainNavigation from "./components/MainNavigation";
+import classes from "./App.module.css";
 
 function App() {
   return (
     <>
-      {/* <Icon /> */}
-      <StudentProfile />
-      {/* <SearchBox /> */}
-      {/* <AddStudent /> */}
+      <section className={classes.app}>
+        <MainNavigation />
+        <Students />
+      </section>
     </>
   );
 }
