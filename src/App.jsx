@@ -1,9 +1,12 @@
-import AddStudent from "./pages/AddStudent";
+// import AddStudent from "./pages/AddStudent";
+
+import SearchBox from "./components/Search";
 
 function App() {
   return (
     <>
-      <AddStudent />
+      <SearchBox />
+      {/* <AddStudent /> */}
     </>
   );
 }
