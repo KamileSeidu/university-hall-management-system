@@ -8,3 +8,15 @@
 .grid-1x2 {
   grid-template-columns: auto 450px;
 }
+
+@media (max-width: 1600px) {
+  .grid-1x2 {
+    grid-template-columns: auto 400px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .grid-1x2 {
+    grid-template-columns: auto 300px;
+  }
+}

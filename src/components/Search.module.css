@@ -10,6 +10,7 @@
   font-size: 1.6rem;
   border: 0;
   flex: 1;
+  outline: none;
 }
 
 .search button {

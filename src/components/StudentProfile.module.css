@@ -40,3 +40,51 @@
   width: 25px;
   height: 25px;
 }
+
+@media (max-width: 1600px) {
+  .profile h1 {
+    font-size: 2.5rem;
+  }
+
+  .profile img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .profile__info {
+    gap: 20px;
+    margin-bottom: 2rem;
+  }
+
+  .profile__info h2 {
+    font-size: 1.4rem;
+  }
+
+  .profile__info h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  .profile h1 {
+    font-size: 2.2rem;
+  }
+
+  .profile img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .profile__info {
+    gap: 15px;
+    margin-bottom: 1.8rem;
+  }
+
+  .profile__info h2 {
+    font-size: 1.3rem;
+  }
+
+  .profile__info h3 {
+    font-size: 1.2rem;
+  }
+}

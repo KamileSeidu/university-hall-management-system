@@ -29,15 +29,6 @@
   padding: 0;
 }
 
-.student-list h2,
-.student-list h3,
-.student-list h4,
-.student-list h5 {
-  margin: 0;
-  font-size: 1.8rem;
-  font-weight: 400;
-}
-
 .student-list li {
   display: grid;
   gap: 20px;
@@ -46,4 +37,36 @@
 
 .student-list p {
   margin: 0;
+}
+
+@media (max-width: 1600px) {
+  .header {
+    grid-template-columns: 100px 200px 100px auto 100px;
+  }
+
+  .header h1 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: white;
+  }
+
+  .student-list li {
+    grid-template-columns: 100px 200px 100px auto 100px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .header {
+    grid-template-columns: 100px 100px 100px auto 100px;
+  }
+
+  .header h1 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: white;
+  }
+
+  .student-list li {
+    grid-template-columns: 100px 100px 100px auto 100px;
+  }
 }

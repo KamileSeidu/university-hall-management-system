@@ -4,6 +4,15 @@
   cursor: pointer;
 }
 
+.student-info h2,
+.student-info h3,
+.student-info h4,
+.student-info h5 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
 .student-info:hover {
   background-color: #dddddd;
 }
@@ -36,4 +45,58 @@
 .action img {
   width: 30px;
   height: 30px;
+}
+
+/* Styles for 1600x900 resolution */
+@media (max-width: 1600px) {
+  .student-info {
+    padding: 1.8rem;
+  }
+
+  .student-info h2,
+  .student-info h3,
+  .student-info h4,
+  .student-info h5 {
+    font-size: 1.6rem;
+  }
+
+  .action {
+    gap: 8px;
+  }
+
+  .action button {
+    border-radius: 6px;
+  }
+
+  .action img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Styles for 1280x768 resolution */
+@media (max-width: 1280px) {
+  .student-info {
+    padding: 1.5rem;
+  }
+
+  .student-info h2,
+  .student-info h3,
+  .student-info h4,
+  .student-info h5 {
+    font-size: 1.4rem;
+  }
+
+  .action {
+    gap: 6px;
+  }
+
+  .action button {
+    border-radius: 5px;
+  }
+
+  .action img {
+    width: 25px;
+    height: 25px;
+  }
 }

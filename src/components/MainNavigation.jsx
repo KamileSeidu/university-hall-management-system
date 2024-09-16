@@ -2,7 +2,7 @@ import Button from "./UI/Button";
 
 import classes from "./MainNavigation.module.css";
 import logo from "../assets/commonwealth_logo.png";
-import dashboard from "../assets/dashboad.svg";
+import dashboard from "../assets/dashboard.svg";
 import list from "../assets/list.svg";
 import exit from "../assets/exit.svg";
 
