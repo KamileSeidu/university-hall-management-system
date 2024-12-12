@@ -6,7 +6,13 @@ import profilePlus from "../assets/profile-plus.svg";
 import Card from "./UI/Card";
 import Button from "./UI/Button";
 
-function StudentsList() {
+function StudentsList({ students }) {
+  const studentsList = students?.length ? (
+    students.map((student) => <StudentDetails key={student._id} {...student} />)
+  ) : (
+    <p>No students available</p>
+  );
+
   return (
     <Card>
       <div className={classes["function-grp"]}>
@@ -22,12 +28,10 @@ function StudentsList() {
         <h1>Full Name</h1>
         <h1>Room No.</h1>
         <h1>Program</h1>
+        <h1>Date of Registration</h1>
         <h1>Action</h1>
       </header>
-      <ul className={classes["student-list"]}>
-        <StudentDetails />
-        <StudentDetails />
-      </ul>
+      <ul className={classes["student-list"]}>{studentsList}</ul>
     </Card>
   );
 }

@@ -1,17 +1,40 @@
-import Students from "./pages/Students";
-import MainNavigation from "./components/MainNavigation";
 import classes from "./App.module.css";
-// import StudentForm from "./components/StudentForm";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import StudentsPage from "./pages/Students";
+import RootLayout from "./pages/RootLayout";
+import DashboardPage from "./pages/Dashboard";
+import ErorPage from "./pages/Error";
+import StudentProfile from "./components/StudentProfile";
+import { loader as studentLoader } from "./pages/Students";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErorPage />,
+    children: [
+      {
+        path: "/",
+        element: <DashboardPage />,
+      },
+      {
+        path: "students",
+        element: <StudentsPage />,
+        loader: studentLoader,
+      },
+      {
+        path: "students/:studentId",
+        element: <StudentProfile />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <>
-      {/* <StudentForm /> */}
-      <section className={classes.app}>
-        <MainNavigation />
-        <Students />
-      </section>
-    </>
+    <div className={classes.app}>
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
