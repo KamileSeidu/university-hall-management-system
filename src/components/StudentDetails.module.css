@@ -1,25 +1,33 @@
 .student-info {
+  display: grid;
+  grid-template-columns: auto 100px;
   padding: 2rem;
   transition: background-color 0.4s ease-in-out;
   cursor: pointer;
 }
 
-.student-info h2,
-.student-info h3,
-.student-info h4,
-.student-info h5 {
+.student-info li {
   margin: 0;
   font-size: 1.8rem;
   font-weight: 400;
+  list-style: none;
 }
 
 .student-info:hover {
   background-color: #dddddd;
 }
 
+.student-info-list {
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 150px 300px 130px 120px auto 250px;
+}
+
 .action {
   display: flex;
   gap: 10px;
+  margin: 0;
 }
 
 .action button:last-child {
@@ -59,14 +67,20 @@
 /* Styles for 1600x900 resolution */
 @media (max-width: 1600px) {
   .student-info {
+    display: grid;
+    grid-template-columns: auto 100px;
     padding: 1.8rem;
   }
 
-  .student-info h2,
-  .student-info h3,
-  .student-info h4,
-  .student-info h5 {
+  .student-info li {
     font-size: 1.6rem;
+  }
+
+  .student-info-list {
+    padding: 0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 100px 100px 100px 100px auto 250px;
   }
 
   .action {
@@ -86,14 +100,20 @@
 /* Styles for 1280x768 resolution */
 @media (max-width: 1280px) {
   .student-info {
+    display: grid;
+    grid-template-columns: auto 100px;
     padding: 1.5rem;
   }
 
-  .student-info h2,
-  .student-info h3,
-  .student-info h4,
-  .student-info h5 {
+  .student-info li {
     font-size: 1.4rem;
+  }
+
+  .student-info-list {
+    padding: 0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 100px 100px 100px 100px auto 250px;
   }
 
   .action {

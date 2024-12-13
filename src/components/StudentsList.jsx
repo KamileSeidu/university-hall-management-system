@@ -27,6 +27,7 @@ function StudentsList({ students }) {
         <h1>ID Number</h1>
         <h1>Full Name</h1>
         <h1>Room No.</h1>
+        <h1>Bed No.</h1>
         <h1>Program</h1>
         <h1>Date of Registration</h1>
         <h1>Action</h1>

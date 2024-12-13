@@ -16,23 +16,26 @@ function StudentDetails({
   const dateOnly = registeredAt.slice(0, 10);
   return (
     <>
-      <Link to={`/students/${_id}`} className={classes.link}>
-        <li className={classes["student-info"]}>
-          <h2>{studentId}</h2>
-          <h3>{`${firstName} ${lastName}`}</h3>
-          <h4>{`${roomNumber} - ${bedNumber}`}</h4>
-          <h5>{programOfStudy}</h5>
-          <h5>{dateOnly}</h5>
-          <p className={classes.action}>
-            <button>
-              <img src={editIcon} alt="edit-icon" />
-            </button>
-            <button>
-              <img src={deleteIcon} alt="delete-icon" />
-            </button>
-          </p>
-        </li>
-      </Link>
+      <li className={classes["student-info"]}>
+        <Link to={`/students/${_id}`} className={classes.link}>
+          <ul className={classes["student-info-list"]}>
+            <li>{studentId}</li>
+            <li>{`${firstName} ${lastName}`}</li>
+            <li>{roomNumber}</li>
+            <li>{bedNumber}</li>
+            <li>{programOfStudy}</li>
+            <li>{dateOnly}</li>
+          </ul>
+        </Link>
+        <p className={classes.action}>
+          <button>
+            <img src={editIcon} alt="edit-icon" />
+          </button>
+          <button>
+            <img src={deleteIcon} alt="delete-icon" />
+          </button>
+        </p>
+      </li>
     </>
   );
 }
