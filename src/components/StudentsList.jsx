@@ -2,9 +2,9 @@ import StudentDetails from "./StudentDetails";
 import classes from "./StudentsList.module.css";
 import Search from "../components/Search";
 import profilePlus from "../assets/profile-plus.svg";
-
 import Card from "./UI/Card";
 import Button from "./UI/Button";
+import { Outlet } from "react-router-dom";
 
 function StudentsList({ students }) {
   const studentsList = students?.length ? (
@@ -32,6 +32,7 @@ function StudentsList({ students }) {
         <h1>Action</h1>
       </header>
       <ul className={classes["student-list"]}>{studentsList}</ul>
+      <Outlet />
     </Card>
   );
 }

@@ -47,6 +47,15 @@
   height: 30px;
 }
 
+.link {
+  text-decoration: none;
+  color: inherit; /* Inherit the color from the parent, or specify a custom color */
+}
+
+.link:hover {
+  color: #007bff; /* Optional: Change color on hover */
+}
+
 /* Styles for 1600x900 resolution */
 @media (max-width: 1600px) {
   .student-info {

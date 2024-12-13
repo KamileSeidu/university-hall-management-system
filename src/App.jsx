@@ -5,7 +5,10 @@ import RootLayout from "./pages/RootLayout";
 import DashboardPage from "./pages/Dashboard";
 import ErorPage from "./pages/Error";
 import StudentProfile from "./components/StudentProfile";
-import { loader as studentLoader } from "./pages/Students";
+import {
+  studentsLoader,
+  studentDetailsLoader,
+} from "../src/loaders/studentLoaders";
 
 const router = createBrowserRouter([
   {
@@ -20,11 +23,14 @@ const router = createBrowserRouter([
       {
         path: "students",
         element: <StudentsPage />,
-        loader: studentLoader,
-      },
-      {
-        path: "students/:studentId",
-        element: <StudentProfile />,
+        loader: studentsLoader,
+        children: [
+          {
+            path: ":studentId",
+            element: <StudentProfile />,
+            loader: studentDetailsLoader,
+          },
+        ],
       },
     ],
   },

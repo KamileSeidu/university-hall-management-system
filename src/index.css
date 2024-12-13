@@ -27,3 +27,32 @@ body {
   color: var(--color-body);
   margin: 0;
 }
+
+/* Style the entire scrollbar track */
+::-webkit-scrollbar {
+  width: 8px; /* Thin scrollbar width */
+  height: 8px; /* For horizontal scrollbars */
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Light and slightly faded background */
+  border-radius: 4px; /* Rounded corners for a smoother look */
+}
+
+/* Style the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4); /* Slightly darker, faded appearance */
+  border-radius: 4px; /* Rounded corners for smoothness */
+  transition: background 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6); /* Darker shade on hover */
+}
+
+/* Style the corners of the scrollbar */
+::-webkit-scrollbar-corner {
+  background: transparent; /* Transparent to match the Apple-like design */
+}

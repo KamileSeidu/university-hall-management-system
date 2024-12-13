@@ -27,6 +27,8 @@
 
 .student-list {
   padding: 0;
+  max-height: 75vh;
+  overflow-y: auto;
 }
 
 .student-list li {
