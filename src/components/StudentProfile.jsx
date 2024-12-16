@@ -8,7 +8,7 @@ function StudentProfile() {
   const student = useLoaderData();
   const navigate = useNavigate();
   const closeModalHandler = () => {
-    navigate(-1); // Navigate back to the previous page
+    navigate(-1);
   };
 
   return (

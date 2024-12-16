@@ -1,7 +1,7 @@
 import editIcon from "../assets/edit.svg";
 import deleteIcon from "../assets/delete.svg";
 import classes from "./StudentDetails.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSubmit } from "react-router-dom";
 
 function StudentDetails({
   _id,
@@ -14,6 +14,20 @@ function StudentDetails({
   registeredAt,
 }) {
   const dateOnly = registeredAt.slice(0, 10);
+  const submit = useSubmit();
+  const navigate = useNavigate();
+
+  function handleEdithandler() {
+    navigate(`/students/${_id}/edit`);
+  }
+
+  function startDeleteHandler() {
+    const proceed = window.confirm("Are you sure you want to delete?");
+
+    if (proceed) {
+      submit(null, { method: "DELETE", action: `/students/${_id}` });
+    }
+  }
   return (
     <>
       <li className={classes["student-info"]}>
@@ -28,10 +42,10 @@ function StudentDetails({
           </ul>
         </Link>
         <p className={classes.action}>
-          <button>
+          <button onClick={handleEdithandler}>
             <img src={editIcon} alt="edit-icon" />
           </button>
-          <button>
+          <button onClick={startDeleteHandler}>
             <img src={deleteIcon} alt="delete-icon" />
           </button>
         </p>

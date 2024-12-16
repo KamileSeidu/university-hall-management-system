@@ -1,6 +1,6 @@
 import Button from "./UI/Button";
 import classes from "./MainNavigation.module.css";
-import logo from "../assets/commonwealth_logo.png";
+import logo from "../assets/CWHLOGO.png";
 import dashboard from "../assets/dashboard.svg";
 import list from "../assets/list.svg";
 import exit from "../assets/exit.svg";
@@ -9,12 +9,9 @@ import { NavLink } from "react-router-dom";
 function MainNavigation() {
   return (
     <nav className={classes["nav-bar"]}>
-      <div className={classes["nav-logo"]}>
+      <header className={classes["nav-logo"]}>
         <img src={logo} alt="commonwealth Hall Logo" />
-        <h1>
-          Commonwealth <span>Hall</span>
-        </h1>
-      </div>
+      </header>
       <ul className={classes["nav-list"]}>
         <li className={`${classes["nav-item"]} ${classes.active}`}>
           <NavLink

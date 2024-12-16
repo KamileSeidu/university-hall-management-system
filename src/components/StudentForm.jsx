@@ -1,39 +1,80 @@
+import { Form } from "react-router-dom";
 import classes from "./StudentForm.module.css";
-import Card from "./UI/Card";
 import Button from "./UI/Button";
 
 function StudentForm() {
   return (
-    <Card>
-      <form action="" className={classes.form}>
+    <div className={classes.card}>
+      <Form
+        method="post"
+        encType="multipart/form-data"
+        action="students/addStudent"
+        className={classes.form}
+      >
         <div className={classes.group}>
           <div className={classes["input-group"]}>
             <label htmlFor="idNumber">ID Number</label>
-            <input type="number" id="idNumber" placeholder="220104304" />
+            <input
+              type="number"
+              id="studentId"
+              name="studentId"
+              placeholder="220104304"
+              required
+            />
           </div>
           <div className={classes["input-group"]}>
             <label htmlFor="phoneNumber">Phone Number</label>
-            <input type="number" id="phoneNumber" placeholder="0205254977" />
+            <input
+              type="number"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="0205254977"
+              required
+            />
           </div>
         </div>
         <div className={classes.group}>
           <div className={classes["input-group"]}>
             <label htmlFor="firstName">First Name</label>
-            <input type="text" id="firstName" placeholder="John" />
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="John"
+              required
+            />
           </div>
           <div className={classes["input-group"]}>
             <label htmlFor="lastName">Last Name</label>
-            <input type="text" id="lastName" placeholder="Doe" />
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Doe"
+              required
+            />
           </div>
         </div>
         <div className={classes.group}>
           <div className={classes["input-group"]}>
             <label htmlFor="roomNumber">Room Number</label>
-            <input type="text" id="roomNumber" placeholder="J40" />
+            <input
+              type="text"
+              id="roomNumber"
+              name="roomNumber"
+              placeholder="J40"
+              required
+            />
           </div>
           <div className={classes["input-group"]}>
             <label htmlFor="bedNumber">Bed Number</label>
-            <input type="number" id="bedNumber" placeholder="1" />
+            <input
+              type="number"
+              id="bedNumber"
+              name="bedNumber"
+              placeholder="1"
+              required
+            />
           </div>
         </div>
         <div className={classes["input-group"]}>
@@ -41,16 +82,25 @@ function StudentForm() {
           <input
             type="text"
             id="program"
+            name="programOfStudy"
             placeholder="Bsc Mathematical Sciences"
+            required
           />
         </div>
         <div className={classes["input-group"]}>
           <label htmlFor="photo">Upload Photo</label>
-          <input type="file" id="photo" accept="image/*" capture="camera" />
+          <input
+            type="file"
+            id="photo"
+            name="photoFileName"
+            accept="image/*"
+            capture="camera"
+            required
+          />
         </div>
         <Button size="btn--block">Register</Button>
-      </form>
-    </Card>
+      </Form>
+    </div>
   );
 }
 
