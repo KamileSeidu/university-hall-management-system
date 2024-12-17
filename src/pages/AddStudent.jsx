@@ -6,7 +6,7 @@ function AddStudentPage() {
   return (
     <div className={classes["section-group"]}>
       <h1 className={classes.heading}>Create Student Record</h1>
-      <StudentForm method={"post"} />
+      <StudentForm />
     </div>
   );
 }

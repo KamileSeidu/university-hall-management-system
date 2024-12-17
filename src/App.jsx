@@ -6,6 +6,8 @@ import DashboardPage from "./pages/Dashboard";
 import ErorPage from "./pages/Error";
 import StudentProfile from "./components/StudentProfile";
 import AddStudent from "./pages/AddStudent";
+import Login from "./pages/Login";
+import PrivateRoute from "./components/PrivateRoute";
 import {
   studentsLoader,
   studentDetailsLoader,
@@ -16,8 +18,19 @@ import {
   editStudentAction,
 } from "./loaders/studentActions";
 import EditStudentPage from "./pages/EditStudent";
+import { loginAction, logoutAction } from "./loaders/authActions";
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+    action: loginAction,
+  },
+  {
+    path: "/logout",
+    action: logoutAction,
+  },
+
   {
     path: "/",
     element: <RootLayout />,
@@ -25,22 +38,42 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <DashboardPage />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <DashboardPage />{" "}
+          </PrivateRoute>
+        ),
       },
       {
         path: "students",
-        element: <StudentsPage />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <StudentsPage />{" "}
+          </PrivateRoute>
+        ),
         loader: studentsLoader,
         children: [
           {
             path: ":studentId",
-            element: <StudentProfile />,
+            element: (
+              <PrivateRoute>
+                {" "}
+                <StudentProfile />{" "}
+              </PrivateRoute>
+            ),
             loader: studentDetailsLoader,
             action: deleteStudentAction,
           },
           {
             path: ":studentId/edit",
-            element: <EditStudentPage />,
+            element: (
+              <PrivateRoute>
+                {" "}
+                <EditStudentPage />{" "}
+              </PrivateRoute>
+            ),
             loader: studentDetailsLoader,
             action: editStudentAction,
           },
@@ -48,7 +81,12 @@ const router = createBrowserRouter([
       },
       {
         path: "students/addStudent",
-        element: <AddStudent />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <AddStudent />{" "}
+          </PrivateRoute>
+        ),
         action: addNewStudentAction,
       },
     ],

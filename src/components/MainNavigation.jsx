@@ -4,9 +4,32 @@ import logo from "../assets/CWHLOGO.png";
 import dashboard from "../assets/dashboard.svg";
 import list from "../assets/list.svg";
 import exit from "../assets/exit.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useSubmit } from "react-router-dom";
+import { getAuthToken, getTokenDuration } from "../loaders/getToken";
+import { useEffect } from "react";
 
 function MainNavigation() {
+  const submit = useSubmit();
+  const token = getAuthToken();
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+
+    if (token === "EXPIRED") {
+      submit(null, { action: "/logout", method: "post" });
+    }
+    const tokenDuration = getTokenDuration();
+
+    setTimeout(() => {
+      submit(null, { action: "/logout", method: "post" });
+    }, tokenDuration);
+  }, [token, submit]);
+
+  const handleLogout = () => {
+    submit(null, { action: "/logout", method: "post" });
+  };
   return (
     <nav className={classes["nav-bar"]}>
       <header className={classes["nav-logo"]}>
@@ -41,7 +64,7 @@ function MainNavigation() {
         </li>
       </ul>
       <span className={classes.logout}>
-        <Button size="btn--block">
+        <Button onClick={handleLogout} size="btn--block">
           <img className={` ${classes["logout-icon"]}`} src={exit} alt="" />
           Logout
         </Button>

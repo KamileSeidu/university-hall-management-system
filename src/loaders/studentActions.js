@@ -1,4 +1,5 @@
 import { redirect } from "react-router-dom";
+import getToken from "./getToken";
 
 export const addNewStudentAction = async ({ request }) => {
   const formData = await request.formData();
@@ -23,7 +24,6 @@ export const addNewStudentAction = async ({ request }) => {
 export const editStudentAction = async ({ request, params }) => {
   const formData = await request.formData();
   const { studentId } = params;
-  console.log(studentId);
 
   try {
     const response = await fetch(

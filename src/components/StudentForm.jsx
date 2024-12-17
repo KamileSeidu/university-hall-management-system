@@ -8,7 +8,6 @@ function StudentForm() {
       <Form
         method="post"
         encType="multipart/form-data"
-        action="students/addStudent"
         className={classes.form}
       >
         <div className={classes.group}>

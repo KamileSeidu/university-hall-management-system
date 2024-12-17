@@ -1,3 +1,5 @@
+import getToken from "./getToken";
+
 export const studentsLoader = async () => {
   const response = await fetch("http://localhost:3000/api/students");
 
