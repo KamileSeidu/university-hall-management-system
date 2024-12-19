@@ -1,7 +1,13 @@
-import getToken from "./getToken";
+import { getAuthToken } from "./getToken";
 
 export const studentsLoader = async () => {
-  const response = await fetch("http://localhost:3000/api/students");
+  const token = getAuthToken();
+
+  const response = await fetch("http://localhost:3000/api/students", {
+    headers: {
+      "x-auth-token": token,
+    },
+  });
 
   if (!response.ok) {
     // Manually throw a JSON response
@@ -17,7 +23,12 @@ export const studentsLoader = async () => {
 
 export const studentDetailsLoader = async ({ params }) => {
   const id = params.studentId;
-  const response = await fetch(`http://localhost:3000/api/students/${id}`);
+  const token = getAuthToken();
+  const response = await fetch(`http://localhost:3000/api/students/${id}`, {
+    headers: {
+      "x-auth-token": token,
+    },
+  });
 
   if (!response.ok) {
     // Manually throw a JSON response

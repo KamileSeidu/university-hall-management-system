@@ -1,7 +1,3 @@
-export default function getToken() {
-  return localStorage.getItem("token");
-}
-
 export function getTokenDuration() {
   const storedExpirationDate = localStorage.getItem("expiration");
   const expirationData = new Date(storedExpirationDate);
