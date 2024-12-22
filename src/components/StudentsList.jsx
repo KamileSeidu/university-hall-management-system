@@ -12,7 +12,7 @@ function StudentsList({ students }) {
 
   const filteredStudents = students.filter((item) => {
     return (
-      item.roomNumber === searchParam ||
+      item.roomNumber.toUpperCase() === searchParam ||
       item.studentId === searchParam ||
       item.firstName.toLowerCase().includes(searchParam.toLowerCase()) ||
       item.lastName.toLowerCase().includes(searchParam.toLowerCase())
@@ -37,11 +37,6 @@ function StudentsList({ students }) {
   ) : (
     <p>No students available</p>
   );
-  // const studentsList = students?.length ? (
-  //   students.map((student) => <StudentDetails key={student._id} {...student} />)
-  // ) : (
-  //   <p>No students available</p>
-  // );
 
   return (
     <Card>

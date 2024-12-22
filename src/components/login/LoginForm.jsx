@@ -1,8 +1,12 @@
 import classes from "./LoginForm.module.css";
 import Button from "../UI/Button";
-import { Form } from "react-router-dom";
+import { Form, useActionData, useNavigation } from "react-router-dom";
 
 function LoginForm() {
+  const actionData = useActionData();
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
   return (
     <div className={classes.card}>
       <Form method="post" className={classes.form}>
@@ -32,7 +36,11 @@ function LoginForm() {
             required
           />
         </div>
-        <Button>Login</Button>
+        {actionData && actionData.error && (
+          <p className={classes.error}>{actionData.error}</p>
+        )}
+
+        <Button>{isSubmitting ? "Logging in...." : "Login"}</Button>
       </Form>
     </div>
   );

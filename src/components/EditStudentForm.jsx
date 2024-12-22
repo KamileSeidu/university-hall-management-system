@@ -1,8 +1,16 @@
 import Button from "./UI/Button";
 import classes from "./StudentForm.module.css";
-import { Form, useNavigate } from "react-router-dom";
+import {
+  Form,
+  useNavigate,
+  useNavigation,
+  useActionData,
+} from "react-router-dom";
 
 function EditStudentForm({ student }) {
+  const actionData = useActionData();
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
   const navigate = useNavigate();
   const closeModalHandler = () => {
     navigate(-1);
@@ -29,6 +37,9 @@ function EditStudentForm({ student }) {
                 defaultValue={student ? student.studentId : ""}
                 required
               />
+              {actionData?.errors?.studentId && (
+                <p className={classes.error}>{actionData.errors.studentId}</p>
+              )}
             </div>
             <div className={classes["input-group"]}>
               <label htmlFor="phoneNumber">Phone Number</label>
@@ -40,6 +51,9 @@ function EditStudentForm({ student }) {
                 defaultValue={student ? student.phoneNumber : ""}
                 required
               />
+              {actionData?.errors?.phoneNumber && (
+                <p className={classes.error}>{actionData.errors.phoneNumber}</p>
+              )}
             </div>
           </div>
           <div className={classes.group}>
@@ -53,6 +67,9 @@ function EditStudentForm({ student }) {
                 defaultValue={student ? student.firstName : ""}
                 required
               />
+              {actionData?.errors?.firstName && (
+                <p className={classes.error}>{actionData.errors.firstName}</p>
+              )}
             </div>
             <div className={classes["input-group"]}>
               <label htmlFor="lastName">Last Name</label>
@@ -64,6 +81,9 @@ function EditStudentForm({ student }) {
                 defaultValue={student ? student.lastName : ""}
                 required
               />
+              {actionData?.errors?.lastName && (
+                <p className={classes.error}>{actionData.errors.lastName}</p>
+              )}
             </div>
           </div>
           <div className={classes.group}>
@@ -77,6 +97,9 @@ function EditStudentForm({ student }) {
                 defaultValue={student ? student.roomNumber : ""}
                 required
               />
+              {actionData?.errors?.roomNumber && (
+                <p className={classes.error}>{actionData.errors.roomNumber}</p>
+              )}
             </div>
             <div className={classes["input-group"]}>
               <label htmlFor="bedNumber">Bed Number</label>
@@ -88,6 +111,9 @@ function EditStudentForm({ student }) {
                 defaultValue={student ? student.bedNumber : ""}
                 required
               />
+              {actionData?.errors?.bedNumber && (
+                <p className={classes.error}>{actionData.errors.bedNumber}</p>
+              )}
             </div>
           </div>
           <div className={classes["input-group"]}>
@@ -100,9 +126,16 @@ function EditStudentForm({ student }) {
               defaultValue={student ? student.programOfStudy : ""}
               required
             />
+            {actionData?.errors?.programOfStudy && (
+              <p className={classes.error}>
+                {actionData.errors.programOfStudy}
+              </p>
+            )}
           </div>
           <div className={classes["btn-grp"]}>
-            <Button size="btn--block">Update Record</Button>
+            <Button size="btn--block">
+              {isSubmitting ? "Updating..." : "Update Record"}
+            </Button>
             <Button
               onClick={closeModalHandler}
               type="btn--secondary"
@@ -110,6 +143,11 @@ function EditStudentForm({ student }) {
             >
               Cancel
             </Button>
+            {actionData?.error && (
+              <p className={`${classes.error} ${classes["error-margin"]}`}>
+                {actionData.error}
+              </p>
+            )}
           </div>
         </Form>
       </div>

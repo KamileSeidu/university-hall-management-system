@@ -1,8 +1,13 @@
-import { Form } from "react-router-dom";
+import { Form, useActionData, useNavigation } from "react-router-dom";
 import classes from "./StudentForm.module.css";
 import Button from "./UI/Button";
 
 function StudentForm() {
+  const actionData = useActionData();
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === "submitting";
+
   return (
     <div className={classes.card}>
       <Form
@@ -12,7 +17,7 @@ function StudentForm() {
       >
         <div className={classes.group}>
           <div className={classes["input-group"]}>
-            <label htmlFor="idNumber">ID Number</label>
+            <label htmlFor="studentId">ID Number</label>
             <input
               type="number"
               id="studentId"
@@ -20,6 +25,9 @@ function StudentForm() {
               placeholder="220104304"
               required
             />
+            {actionData?.errors?.studentId && (
+              <p className={classes.error}>{actionData.errors.studentId}</p>
+            )}
           </div>
           <div className={classes["input-group"]}>
             <label htmlFor="phoneNumber">Phone Number</label>
@@ -30,6 +38,9 @@ function StudentForm() {
               placeholder="0205254977"
               required
             />
+            {actionData?.errors?.phoneNumber && (
+              <p className={classes.error}>{actionData.errors.phoneNumber}</p>
+            )}
           </div>
         </div>
         <div className={classes.group}>
@@ -42,6 +53,9 @@ function StudentForm() {
               placeholder="John"
               required
             />
+            {actionData?.errors?.firstName && (
+              <p className={classes.error}>{actionData.errors.firstName}</p>
+            )}
           </div>
           <div className={classes["input-group"]}>
             <label htmlFor="lastName">Last Name</label>
@@ -52,6 +66,9 @@ function StudentForm() {
               placeholder="Doe"
               required
             />
+            {actionData?.errors?.lastName && (
+              <p className={classes.error}>{actionData.errors.lastName}</p>
+            )}
           </div>
         </div>
         <div className={classes.group}>
@@ -64,6 +81,9 @@ function StudentForm() {
               placeholder="J40"
               required
             />
+            {actionData?.errors?.roomNumber && (
+              <p className={classes.error}>{actionData.errors.roomNumber}</p>
+            )}
           </div>
           <div className={classes["input-group"]}>
             <label htmlFor="bedNumber">Bed Number</label>
@@ -74,6 +94,9 @@ function StudentForm() {
               placeholder="1"
               required
             />
+            {actionData?.errors?.bedNumber && (
+              <p className={classes.error}>{actionData.errors.bedNumber}</p>
+            )}
           </div>
         </div>
         <div className={classes["input-group"]}>
@@ -85,6 +108,9 @@ function StudentForm() {
             placeholder="Bsc Mathematical Sciences"
             required
           />
+          {actionData?.errors?.programOfStudy && (
+            <p className={classes.error}>{actionData.errors.programOfStudy}</p>
+          )}
         </div>
         <div className={classes["input-group"]}>
           <label htmlFor="photo">Upload Photo</label>
@@ -96,8 +122,18 @@ function StudentForm() {
             capture="camera"
             required
           />
+          {actionData?.errors?.photoFileName && (
+            <p className={classes.error}>{actionData.errors.photoFileName}</p>
+          )}
         </div>
-        <Button size="btn--block">Register</Button>
+        <Button size={"btn--block"}>
+          {isSubmitting ? "Registering...." : "Register"}
+        </Button>
+        {actionData?.error && (
+          <p className={`${classes.error} ${classes["error-margin"]}`}>
+            {actionData.error}
+          </p>
+        )}
       </Form>
     </div>
   );

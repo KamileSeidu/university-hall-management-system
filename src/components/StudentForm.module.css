@@ -71,6 +71,16 @@
   z-index: 50;
 }
 
+.error {
+  margin: 0;
+  font-size: 1.5rem;
+  color: red;
+}
+
+.error.error-margin {
+  margin: 1rem;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;

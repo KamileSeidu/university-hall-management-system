@@ -1,0 +1,24 @@
+.block {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 2px #ccc;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.block h1,
+p {
+  margin: 0;
+  color: #6d0740;
+  text-align: center;
+}
+
+.block h1 {
+  font-weight: 600;
+}
+
+.block p {
+  font-weight: 400;
+  font-size: 3rem;
+}

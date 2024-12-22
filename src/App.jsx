@@ -17,6 +17,7 @@ import {
   deleteStudentAction,
   editStudentAction,
 } from "./loaders/studentActions";
+import { dashboardLoader } from "./loaders/dashboardLoader";
 import EditStudentPage from "./pages/EditStudent";
 import { loginAction, logoutAction } from "./loaders/authActions";
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
             <DashboardPage />{" "}
           </PrivateRoute>
         ),
+        loader: dashboardLoader,
       },
       {
         path: "students",

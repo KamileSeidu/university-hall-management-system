@@ -1,0 +1,88 @@
+.card {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #ccc;
+  display: inline-block;
+}
+
+.card.chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.card.card--1 {
+  background-color: #bf914bbd;
+  padding: 2rem;
+}
+
+.card.card--2 {
+  background-color: #eee1a5;
+  padding: 2rem;
+}
+
+.card.card--1,
+.card.card--2 {
+  max-width: 435px;
+  box-shadow: 2px 2px 2px #ccc;
+}
+
+.image {
+  width: 60px;
+  height: 60px;
+  margin: 0 0 1rem 0;
+}
+
+.card h1,
+h2 {
+  margin: 0;
+  color: #6d0740;
+}
+
+.card h1 {
+  font-weight: 500;
+}
+
+.card h2 {
+  font-weight: 300;
+  text-align: center;
+  font-size: 8rem;
+}
+
+.card.card--2 h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.container {
+  display: flex;
+  max-height: 300px;
+}
+
+input[type="date"] {
+  /* width: 100%; */
+  width: 150px;
+  height: 55px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+  color: #333;
+  transition: all 0.3s ease;
+  margin: 0 0 1.5rem 0;
+}
+
+input[type="date"]:focus {
+  border-color: #4a90e2;
+  background-color: #fff;
+  outline: none;
+}
+
+input[type="date"]:hover {
+  border-color: #aaa;
+}
