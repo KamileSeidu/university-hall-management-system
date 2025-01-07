@@ -9,6 +9,7 @@ function StudentDetails({
   roomNumber,
   bedNumber,
   firstName,
+  middleName,
   lastName,
   programOfStudy,
   registeredAt,
@@ -20,6 +21,8 @@ function StudentDetails({
   function handleEdithandler() {
     navigate(`/students/${_id}/edit`);
   }
+
+  const middleNameAbbreviation = middleName ? middleName.slice(0, 1) : "";
 
   function startDeleteHandler() {
     const proceed = window.confirm("Are you sure you want to delete?");
@@ -34,7 +37,9 @@ function StudentDetails({
         <Link to={`/students/${_id}`} className={classes.link}>
           <ul className={classes["student-info-list"]}>
             <li>{studentId}</li>
-            <li>{`${firstName} ${lastName}`}</li>
+            <li>{`${firstName} ${middleNameAbbreviation}${
+              middleName ? "." : ""
+            } ${lastName}`}</li>
             <li>{roomNumber}</li>
             <li>{bedNumber}</li>
             <li>{programOfStudy}</li>

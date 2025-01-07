@@ -11,6 +11,8 @@ function StudentProfile() {
     navigate(-1);
   };
 
+  const fullMiddleName = student.middleName ? student.middleName : "";
+
   return (
     <>
       <div className={classes.backdrop} onClick={closeModalHandler}></div>
@@ -24,7 +26,7 @@ function StudentProfile() {
             src={`http://localhost:3000/uploads/student-photos/${student.photoFileName}`}
             alt="Kamile-profle-photo"
           />
-          <h1>{`${student.firstName}, ${student.lastName}`}</h1>
+          <h1>{`${student.firstName} ${fullMiddleName}, ${student.lastName}`}</h1>
           <div className={classes["profile__info"]}>
             <Icon name="barcode" />
             <div>

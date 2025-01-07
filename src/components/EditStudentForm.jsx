@@ -88,6 +88,37 @@ function EditStudentForm({ student }) {
           </div>
           <div className={classes.group}>
             <div className={classes["input-group"]}>
+              <label htmlFor="middleName">Middle Name</label>
+              <input
+                type="text"
+                id="program"
+                name="middleName"
+                placeholder="Kwame"
+                required
+              />
+              {actionData?.errors?.middleName && (
+                <p className={classes.error}>{actionData.errors.middleName}</p>
+              )}
+            </div>
+            <div className={classes["input-group"]}>
+              <label htmlFor="program">Program</label>
+              <input
+                type="text"
+                id="program"
+                name="programOfStudy"
+                placeholder="Bsc Mathematical Sciences"
+                defaultValue={student ? student.programOfStudy : ""}
+                required
+              />
+              {actionData?.errors?.programOfStudy && (
+                <p className={classes.error}>
+                  {actionData.errors.programOfStudy}
+                </p>
+              )}
+            </div>
+          </div>
+          <div className={classes.group}>
+            <div className={classes["input-group"]}>
               <label htmlFor="roomNumber">Room Number</label>
               <input
                 type="text"
@@ -116,7 +147,7 @@ function EditStudentForm({ student }) {
               )}
             </div>
           </div>
-          <div className={classes["input-group"]}>
+          {/* <div className={classes["input-group"]}>
             <label htmlFor="program">Program</label>
             <input
               type="text"
@@ -131,7 +162,7 @@ function EditStudentForm({ student }) {
                 {actionData.errors.programOfStudy}
               </p>
             )}
-          </div>
+          </div> */}
           <div className={classes["btn-grp"]}>
             <Button size="btn--block">
               {isSubmitting ? "Updating..." : "Update Record"}

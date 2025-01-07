@@ -11,6 +11,13 @@
   font-weight: 400;
 }
 
+.preview {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+}
+
 .btn-grp {
   display: flex;
   flex-direction: row;
