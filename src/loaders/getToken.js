@@ -1,21 +1,21 @@
-export function getTokenDuration() {
-  const storedExpirationDate = localStorage.getItem("expiration");
-  const expirationData = new Date(storedExpirationDate);
-  const now = new Date();
-  const duration = expirationData.getTime() - now.getTime();
-  return duration;
-}
+// export function getTokenDuration() {
+//   const storedExpirationDate = localStorage.getItem("expiration");
+//   const expirationData = new Date(storedExpirationDate);
+//   const now = new Date();
+//   const duration = expirationData.getTime() - now.getTime();
+//   return duration;
+// }
 
 export function getAuthToken() {
   const token = localStorage.getItem("token");
-  const tokenDuration = getTokenDuration();
+  // const tokenDuration = getTokenDuration();
 
-  if (!token) {
-    return null;
-  }
+  // if (!token) {
+  //   return null;
+  // }
 
-  if (tokenDuration < 0) {
-    return "EXPIRED";
-  }
+  // if (tokenDuration < 0) {
+  //   return "EXPIRED";
+  // }
   return token;
 }

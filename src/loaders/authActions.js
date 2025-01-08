@@ -28,9 +28,9 @@ export async function loginAction({ request }) {
     localStorage.setItem("token", data.token);
 
     //calculating the expiration date of the token
-    const expiration = new Date();
-    expiration.setHours(expiration.getHours() + 1);
-    localStorage.setItem("expiration", expiration.toISOString());
+    // const expiration = new Date();
+    // expiration.setHours(expiration.getHours() + 1);
+    // localStorage.setItem("expiration", expiration.toISOString());
 
     // Redirect to dashboard or home page after successful login
     return redirect("/");
