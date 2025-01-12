@@ -275,7 +275,6 @@ function StudentForm() {
               id="program"
               name="middleName"
               placeholder="Kwame"
-              required
             />
             {actionData?.errors?.middleName && (
               <p className={classes.error}>{actionData.errors.middleName}</p>

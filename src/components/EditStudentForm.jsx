@@ -94,7 +94,7 @@ function EditStudentForm({ student }) {
                 id="program"
                 name="middleName"
                 placeholder="Kwame"
-                required
+                defaultValue={student ? student.middleName : ""}
               />
               {actionData?.errors?.middleName && (
                 <p className={classes.error}>{actionData.errors.middleName}</p>

@@ -5,7 +5,7 @@ import dashboard from "../assets/dashboard.svg";
 import list from "../assets/list.svg";
 import exit from "../assets/exit.svg";
 import { NavLink, useSubmit } from "react-router-dom";
-import { getAuthToken, getTokenDuration } from "../loaders/getToken";
+import { getAuthToken } from "../loaders/getToken";
 import { useEffect } from "react";
 
 function MainNavigation() {
@@ -20,11 +20,11 @@ function MainNavigation() {
     if (token === "EXPIRED") {
       submit(null, { action: "/logout", method: "post" });
     }
-    const tokenDuration = getTokenDuration();
+    // const tokenDuration = getTokenDuration();
 
-    setTimeout(() => {
-      submit(null, { action: "/logout", method: "post" });
-    }, tokenDuration);
+    // setTimeout(() => {
+    //   submit(null, { action: "/logout", method: "post" });
+    // }, tokenDuration);
   }, [token, submit]);
 
   const handleLogout = () => {
