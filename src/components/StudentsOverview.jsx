@@ -5,6 +5,16 @@ import { useState } from "react";
 import PrintStudents from "./PrintStudents";
 
 function StudentsOverview({ students }) {
+  //Total Number of Signed In Students
+  const signedInCount = students.filter(
+    (student) => student.isSignedIn === true
+  ).length;
+
+  //Total Number of Signed out Students
+  const unsignedInCount = students.filter(
+    (student) => student.isSignedIn === false
+  ).length;
+
   const numberOfStudents = students.length;
   // Step 1: Transform dates and count frequencies
   const frequencyMap = students.reduce((acc, student) => {
@@ -209,12 +219,20 @@ function StudentsOverview({ students }) {
           </div>
           <div className={clasess["card--2__footer"]}>
             <button onClick={handlePrint} className={clasess["button-print"]}>
-              Print Students Records
+              Print Records
             </button>
-            {/* <PrintStudents students={students} /> */}
             <div className={clasess["card--2__footer--signedOut"]}>
-              <h1>Signed Out</h1>
-              <p>25</p>
+              <h1>Number of Sign: </h1>
+              <div className={clasess["card--2__footer--signedOut--count"]}>
+                <span className={clasess[`signedIn`]}>
+                  <h1>Ins</h1>
+                  <p>{signedInCount}</p>
+                </span>
+                <span className={clasess[`signedOut`]}>
+                  <h1>Outs</h1>
+                  <p>{unsignedInCount}</p>
+                </span>
+              </div>
             </div>
           </div>
         </div>

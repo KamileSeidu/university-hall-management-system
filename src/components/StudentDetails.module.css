@@ -1,6 +1,6 @@
 .student-info {
   display: grid;
-  grid-template-columns: auto 100px;
+  grid-template-columns: auto 200px;
   padding: 2rem;
   transition: background-color 0.4s ease-in-out;
   cursor: pointer;
@@ -21,7 +21,7 @@
   padding: 0;
   display: grid;
   gap: 20px;
-  grid-template-columns: 150px 300px 130px 120px auto 250px;
+  grid-template-columns: 150px 350px 170px 400px 200px;
 }
 
 .action {
@@ -30,23 +30,42 @@
   margin: 0;
 }
 
-.action button:last-child {
-  background-color: orange;
-  transition: background-color 0.3s ease-in-out;
-}
-
 .action button {
   border: 0;
-  background-color: #0d89f0;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  transition: filter 0.3s ease-in-out;
 }
 
-.action button:hover {
+.action .check-in {
+  background-color: green;
+}
+
+.action .check-out {
+  background-color: red;
+}
+
+.action .edit {
+  background-color: #0d89f0;
+}
+
+.action .delete {
+  background-color: orange;
+}
+
+.action .check-in:hover {
+  filter: brightness(0.9);
+}
+
+.action .check-out:hover {
+  filter: brightness(0.9);
+}
+
+.action .edit:hover {
   background-color: #0572ca;
 }
-.action button:last-child:hover {
+.action .delete:hover {
   background-color: rgb(185, 125, 11);
 }
 
@@ -62,6 +81,20 @@
 
 .link:hover {
   color: #007bff; /* Optional: Change color on hover */
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Optional: Add hover effect for active buttons */
+.check-in:not(.disabled):hover,
+.check-out:not(.disabled):hover,
+.edit:hover,
+.delete:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
 }
 
 /* Styles for 1600x900 resolution */
@@ -80,7 +113,7 @@
     padding: 0;
     display: grid;
     gap: 20px;
-    grid-template-columns: 100px 100px 100px 100px auto 250px;
+    grid-template-columns: 100px 100px 100px 100px auto 300px;
   }
 
   .action {
@@ -113,7 +146,7 @@
     padding: 0;
     display: grid;
     gap: 20px;
-    grid-template-columns: 100px 100px 100px 100px auto 250px;
+    grid-template-columns: 100px 100px 100px 100px auto 300px;
   }
 
   .action {

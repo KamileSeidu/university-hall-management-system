@@ -53,9 +53,8 @@ h2 {
 }
 .card.card--2 h2 {
   font-weight: 300;
-  margin-left: 10rem;
-  margin-bottom: 1rem;
-  /* text-align: center; */
+  flex: 1;
+  text-align: center;
   font-size: 4.5rem;
 }
 
@@ -74,8 +73,9 @@ h2 {
 
 .card--2__content--date {
   display: flex;
-  /* justify-content: space-between; */
+  /* justify-content: center; */
   align-items: center;
+  padding-bottom: 0.5rem;
 }
 
 .card--2__footer {
@@ -83,22 +83,46 @@ h2 {
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #8d2b2b;
-  padding: 1.5rem 0;
+  gap: 1rem;
 }
 
 .card--2__footer--signedOut {
-  border: 1px solid #8d2b2b;
-  border-radius: 5px;
+  border-left: 1px solid #8d2b2b;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding-top: 1rem;
+}
+
+.card.card--2 .card--2__footer--signedOut h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.card--2__footer--signedOut--count {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.signedIn {
+  border-right: 1px solid #8d2b2b;
+  flex: 1;
+  text-align: center;
+}
+.signedOut {
+  border-left: 1px solid #8d2b2b;
+  flex: 1;
+  text-align: center;
+  /* padding-left: 2rem; */
+}
+
 .card--2__footer--signedOut p {
   text-align: center;
-  font-size: 4.5rem;
-  font-weight: 400;
+  font-size: 3rem;
+  font-weight: 300;
 }
 
 .button-print {
@@ -112,7 +136,7 @@ h2 {
   transition: all 0.3s ease;
 }
 
-button:hover {
+.button-print:hover {
   background-color: #8d2b2b;
 }
 
@@ -132,7 +156,6 @@ input[type="date"] {
   background-color: #fafafa;
   color: #333;
   transition: all 0.3s ease;
-  margin: 0 0 1.5rem 0;
 }
 
 input[type="date"]:focus {

@@ -12,7 +12,7 @@
 .header {
   display: grid;
   gap: 20px;
-  grid-template-columns: 150px 300px 130px 120px auto 250px 100px;
+  grid-template-columns: 150px 350px 170px 400px 200px 180px;
   background-color: #4c032b;
   padding: 2rem;
   border-top-left-radius: 24px;

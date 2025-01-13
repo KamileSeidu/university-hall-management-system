@@ -1,16 +1,28 @@
 import logo from "../assets/commonwealth_logo.png";
 
 const PrintStudents = ({ students }) => {
-  // console.log(students);
-  const studentsList = students.map((student) => {
+  // Sorted students in alphabetical order
+  const sortedStudents = [...students].sort((a, b) => {
+    if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) {
+      return -1;
+    }
+    if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) {
+      return 1;
+    }
+    return 0;
+  });
+
+  const studentsList = sortedStudents.map((student) => {
     return (
       <li key={student._id} className="table-list">
         <p>{`${student.firstName} ${student.middleName} ${student.lastName} `}</p>
         <p>{student.programOfStudy}</p>
         <p>{` ${student.roomNumber} - ${student.bedNumber}`}</p>
         <p>{student.phoneNumber}</p>
-        <p>{student.dateSignedIn}</p>
-        <p>{student.dateSignedOut}</p>
+        <p>{student.lastSignInDate.slice(0, 10)}</p>
+        <p>
+          {student.lastSignOutDate ? student.lastSignOutDate.slice(0, 10) : ""}
+        </p>
       </li>
     );
   });
@@ -34,17 +46,7 @@ const PrintStudents = ({ students }) => {
           <h1>Date Signed In</h1>
           <h1>Date Signed Out</h1>
         </ul>
-        <ul>
-          {studentsList}
-          {/* <li className="table-list">
-            <p>John Doe Kamile Ghana Seidu</p>
-            <p>BSc. Computer Science</p>
-            <p>12</p>
-            <p>0241234567</p>
-            <p>12/12/2021</p>
-            <p>12/12/2021</p>
-          </li> */}
-        </ul>
+        <ul>{studentsList}</ul>
       </div>
     </main>
   );
