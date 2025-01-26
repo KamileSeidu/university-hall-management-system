@@ -15,6 +15,7 @@ const PrintStudents = ({ students }) => {
   const studentsList = sortedStudents.map((student) => {
     return (
       <li key={student._id} className="table-list">
+        <p>{student.studentId}</p>
         <p>{`${student.firstName} ${student.middleName} ${student.lastName} `}</p>
         <p>{student.programOfStudy}</p>
         <p>{` ${student.roomNumber} - ${student.bedNumber}`}</p>
@@ -30,15 +31,17 @@ const PrintStudents = ({ students }) => {
   return (
     <main className="main" id="printable-content">
       <header className="header">
-        <img src={logo} alt="" />
         <div className="header-text">
-          <h1>University of Ghana</h1>
-          <h1>Commonwealth Hall Students List</h1>
+          <h1>COMMONWEALTH HALL</h1>
+          <h1>(UNIVERSITY OF GHANA)</h1>
         </div>
+        <img src={logo} alt="" />
+        <h2> LIST OF LEVEL 100&apos;S</h2>
       </header>
       <hr />
       <div>
         <ul className="table-list">
+          <h1>Student ID</h1>
           <h1>Full Name</h1>
           <h1>Program of Study</h1>
           <h1>Room No.</h1>

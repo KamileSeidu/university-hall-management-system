@@ -7,15 +7,26 @@ import Button from "./UI/Button";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function StudentsList({ students }) {
+function StudentsList({ students, fetchStudents }) {
   const [searchParam, setSearchParam] = useState("");
 
+  // console.log(fetchStudents);
+
   const filteredStudents = students.filter((item) => {
+    const isSignedInSearch =
+      searchParam.toLowerCase() === "in"
+        ? true
+        : searchParam.toLowerCase() === "out"
+        ? false
+        : null;
+
     return (
       item.roomNumber.toUpperCase() === searchParam ||
       item.studentId === searchParam ||
       item.firstName.toLowerCase().includes(searchParam.toLowerCase()) ||
-      item.lastName.toLowerCase().includes(searchParam.toLowerCase())
+      item.phoneNumber === searchParam ||
+      item.lastName.toLowerCase().includes(searchParam.toLowerCase()) ||
+      (isSignedInSearch !== null && item.isSignedIn === isSignedInSearch)
     );
   });
 
@@ -32,7 +43,11 @@ function StudentsList({ students }) {
 
   const studentsList = studentsData?.length ? (
     studentsData.map((student) => (
-      <StudentDetails key={student._id} {...student} />
+      <StudentDetails
+        key={student._id}
+        {...student}
+        fetchStudents={fetchStudents}
+      />
     ))
   ) : (
     <p>No students available</p>

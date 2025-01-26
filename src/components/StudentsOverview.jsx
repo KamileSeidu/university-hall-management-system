@@ -98,31 +98,46 @@ function StudentsOverview({ students }) {
       hr {
         display: block;
         content: "";
-        margin-top: 1em;
+        margin-top: 1rem;
         border: 1px solid #ccc;
       }
 
       .header {
         display: flex !important;
+        flex-direction: column !important;
         justify-content: start !important;
         align-items: center !important;
-        margin-bottom: 2rem;
+        
+      }
+
+      .header-text {
+        text-align: center;     
+        margin-bottom: 0.5rem;
       }
 
       .header h1 {
+        color: red;
         margin: 0;
       }
 
       .header-text > h1:first-child {
-        font-size: 3rem !important;
+        font-size: 5rem !important;
         font-weight: 800 !important;
       }
 
       .header-text > h1:last-child {
         margin-top: 0.5rem !important;
         margin-left: 0.2rem !important;
-        font-size: 2rem !important;
+        font-size: 2.5rem !important;
         font-weight: 400 !important;
+      }
+
+      .header h2 {
+        font-size: 1.4rem !important;
+        font-weight: 300 !important;
+        text-decoration: underline !important;
+        margin-bottom: 0.5rem !important;
+      
       }
 
       ul {
@@ -133,7 +148,7 @@ function StudentsOverview({ students }) {
 
       .table-list {
         display: grid !important;
-        grid-template-columns: 250px 250px 150px 150px 150px 150px !important;
+        grid-template-columns: 120px 250px 250px 110px 140px 120px 125px !important;
         gap: 0.5rem !important;
         margin-bottom: 0.5rem !important;
         padding: 0.5rem !important;
@@ -155,11 +170,14 @@ function StudentsOverview({ students }) {
         body {
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
+          padding: 20px !important;
+
         }
 
         .main {
           margin: 0 !important;
-          padding: 20px !important;
+          // padding: 20px !important;
+          // padding-top: 50px !important;
         }
       }
     `;

@@ -93,7 +93,8 @@ function StudentDetails({
   lastName,
   programOfStudy,
   registeredAt,
-  isSignedIn = false, // Add default value
+  isSignedIn = false,
+  fetchStudents,
 }) {
   const [loading, setLoading] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(isSignedIn);
@@ -101,6 +102,8 @@ function StudentDetails({
   const dateOnly = registeredAt.slice(0, 10);
   const submit = useSubmit();
   const navigate = useNavigate();
+
+  // console.log(fetchStudents);
 
   function handleEdithandler() {
     navigate(`/students/${_id}/edit`);
@@ -145,6 +148,9 @@ function StudentDetails({
 
         // Update local state
         setCurrentStatus(action === "signin");
+
+        fetchStudents();
+        // console.log(` I have been executed ${fetchStudents}`);
 
         // Optional: Show success message
         const actionText = action === "signin" ? "signed in" : "signed out";
