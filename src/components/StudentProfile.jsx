@@ -1,5 +1,5 @@
 import classes from "./StudentProfile.module.css";
-import Button from "../components/UI/Button";
+import Button from "./UI/Button";
 import thumbs from "../assets/profileIcons/thumbs.svg";
 import Icon from "./UI/icon";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";

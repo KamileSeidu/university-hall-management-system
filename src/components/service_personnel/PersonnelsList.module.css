@@ -25,32 +25,8 @@
   color: white;
 }
 
-.student-list {
+.personnel-list {
   padding: 0;
   max-height: 75vh;
   overflow-y: auto;
 }
-
-/* @media (max-width: 1600px) {
-  .header {
-    grid-template-columns: 100px 200px 100px 100px auto 250px 100px;
-  }
-
-  .header h1 {
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: white;
-  }
-}
-
-@media (max-width: 1280px) {
-  .header {
-    grid-template-columns: 100px 100px 100px 100px auto 250px 100px;
-  }
-
-  .header h1 {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: white;
-  }
-} */

@@ -37,7 +37,7 @@ function StudentsPage() {
   // }, []);
 
   return (
-    <section className={`${classes.grid} `}>
+    <section className={classes["section-group"]}>
       <StudentsList students={students} fetchStudents={fetchStudents} />
     </section>
   );

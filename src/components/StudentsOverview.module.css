@@ -1,5 +1,4 @@
 .card {
-  margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -12,6 +11,7 @@
   justify-content: center;
   align-items: center;
   flex: 1;
+  width: 10px;
 }
 
 .card.card--1 {
@@ -28,6 +28,7 @@
 .card.card--2 {
   max-width: 435px;
   box-shadow: 2px 2px 2px #ccc;
+  margin-right: 1rem;
 }
 
 .image {

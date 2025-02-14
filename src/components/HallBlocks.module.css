@@ -6,8 +6,9 @@
 
 .container {
   display: flex;
+  max-height: 590px;
   flex-direction: row;
-  margin: 10px;
+  margin-top: 1rem;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -15,9 +16,8 @@
 }
 
 .chat {
-  height: 600px;
   flex: 1;
-  display: flex; /* Use flexbox for centering within its container */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,6 +1,6 @@
 import StudentDetails from "./StudentDetails";
 import classes from "./StudentsList.module.css";
-import Search from "../components/Search";
+import Search from "./Search";
 import profilePlus from "../assets/profile-plus.svg";
 import Card from "./UI/Card";
 import Button from "./UI/Button";

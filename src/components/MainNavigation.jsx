@@ -3,6 +3,7 @@ import classes from "./MainNavigation.module.css";
 import logo from "../assets/CWHLOGO.png";
 import dashboard from "../assets/dashboard.svg";
 import list from "../assets/list.svg";
+import graduate from "../assets/graduate.svg";
 import exit from "../assets/exit.svg";
 import { NavLink, useSubmit } from "react-router-dom";
 import { getAuthToken } from "../loaders/getToken";
@@ -60,6 +61,21 @@ function MainNavigation() {
           >
             <img src={list} className={classes["nav-icon"]} alt="list-icon" />{" "}
             Students
+          </NavLink>
+        </li>
+        <li className={`${classes["nav-item"]}`}>
+          <NavLink
+            to={"/nss-personnels"}
+            className={({ isActive }) =>
+              isActive ? classes.active : undefined
+            }
+          >
+            <img
+              src={graduate}
+              className={classes["nav-icon"]}
+              alt="list-icon"
+            />{" "}
+            NSS Personnels
           </NavLink>
         </li>
       </ul>
