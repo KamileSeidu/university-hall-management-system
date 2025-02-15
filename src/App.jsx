@@ -7,7 +7,11 @@ import ErorPage from "./pages/Error";
 import StudentProfile from "./components/StudentProfile";
 import AddStudentPage from "./pages/AddStudent";
 import Login from "./pages/Login";
+import KeyLogsPage from "./pages/key-log/KeyLogs";
 import PrivateRoute from "./components/PrivateRoute";
+import PersonnelsPage from "./pages/personnel/Personnels";
+import AddPersonnelPage from "./pages/personnel/AddPersonnel";
+import EditStudentPage from "./pages/EditStudent";
 import {
   studentsLoader,
   studentDetailsLoader,
@@ -18,11 +22,9 @@ import {
   editStudentAction,
 } from "./loaders/studentActions";
 import { dashboardLoader } from "./loaders/dashboardLoader";
-import EditStudentPage from "./pages/EditStudent";
 import { loginAction, logoutAction } from "./loaders/authActions";
 import { rootLoader } from "./loaders/rootLoader";
-import PersonnelsPage from "./pages/personnel/Personnels";
-import AddPersonnelPage from "./pages/personnel/AddPersonnel";
+import { addNewPersonnelAction } from "./loaders/personnel/nssPersonnelAction";
 
 const router = createBrowserRouter([
   {
@@ -102,6 +104,15 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddPersonnelPage />
+          </PrivateRoute>
+        ),
+        action: addNewPersonnelAction,
+      },
+      {
+        path: "key-logs",
+        element: (
+          <PrivateRoute>
+            <KeyLogsPage />
           </PrivateRoute>
         ),
       },
