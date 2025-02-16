@@ -77,12 +77,14 @@ export const addNewPersonnelAction = async ({ request }) => {
 export const editPersonnelAction = async ({ request, params }) => {
   const token = getAuthToken();
   const formData = await request.formData();
-  const { nssNumber } = params;
+  const { personnelId } = params;
+
+  // console.log("nssNumber", personnelId);
 
   const errors = {};
 
   // Extract fields from formData
-  const nss_Number = formData.get("nssNumber"); //Did some giminastics here to avoid NssNumber name clash
+  const nssNumber = formData.get("nssNumber"); //Did some giminastics here to avoid NssNumber name clash
   const phoneNumber = formData.get("phoneNumber");
   const firstName = formData.get("firstName");
   const lastName = formData.get("lastName");
@@ -91,7 +93,7 @@ export const editPersonnelAction = async ({ request, params }) => {
   const placeOfWork = formData.get("placeOfWork");
 
   // Validation logic
-  if (!nss_Number || !/^NSS[A-Za-z]{3}\d{7}$/.test(nssNumber)) {
+  if (!nssNumber || !/^NSS[A-Za-z]{3}\d{7}$/.test(nssNumber)) {
     errors.nssNumber =
       "Nss Number must be valid. Should contain 6 letters and 7 digits.";
   }
@@ -125,7 +127,7 @@ export const editPersonnelAction = async ({ request, params }) => {
 
   try {
     const response = await fetch(
-      `http://localhost:3000/api/nssPersonnels/${nssNumber}`,
+      `http://localhost:3000/api/nssPersonnels/${personnelId}`,
       {
         method: "PATCH",
         headers: {
@@ -150,10 +152,10 @@ export const editPersonnelAction = async ({ request, params }) => {
 
 export const deletePersonnelAction = async ({ params }) => {
   const token = getAuthToken();
-  const { nssNumber } = params;
+  const { personnelId } = params;
   try {
     const response = await fetch(
-      `http://localhost:3000/api/nssPersonnels/${nssNumber}`,
+      `http://localhost:3000/api/nssPersonnels/${personnelId}`,
       {
         method: "DELETE",
         headers: {

@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import PersonnelsPage from "./pages/personnel/Personnels";
 import AddPersonnelPage from "./pages/personnel/AddPersonnel";
 import EditStudentPage from "./pages/EditStudent";
+import EditPersonnelPage from "./pages/personnel/EditPersonnel";
 import {
   studentsLoader,
   studentDetailsLoader,
@@ -24,7 +25,11 @@ import {
 import { dashboardLoader } from "./loaders/dashboardLoader";
 import { loginAction, logoutAction } from "./loaders/authActions";
 import { rootLoader } from "./loaders/rootLoader";
-import { addNewPersonnelAction } from "./loaders/personnel/nssPersonnelAction";
+import {
+  addNewPersonnelAction,
+  editPersonnelAction,
+} from "./loaders/personnel/nssPersonnelAction";
+import { personnelsLoader } from "./loaders/personnel/nssPersonnelLoader";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +103,7 @@ const router = createBrowserRouter([
             <PersonnelsPage />
           </PrivateRoute>
         ),
+        loader: personnelsLoader,
       },
       {
         path: "nss-personnels/addPersonnel",
@@ -107,6 +113,16 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         action: addNewPersonnelAction,
+      },
+      {
+        path: "nss-personnels/:personnelId/edit",
+        element: (
+          <PrivateRoute>
+            <EditPersonnelPage />
+          </PrivateRoute>
+        ),
+        action: editPersonnelAction,
+        loader: personnelsLoader,
       },
       {
         path: "key-logs",

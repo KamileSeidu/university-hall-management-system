@@ -1,7 +1,7 @@
 import classes from "./Students.module.css";
 import StudentsList from "../components/StudentsList";
 import { useLoaderData } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { getAuthToken } from "../loaders/getToken";
 
@@ -25,16 +25,6 @@ function StudentsPage() {
     const data = await response.json();
     setStudents(data);
   };
-
-  // useEffect(() => {
-  //   // Poll for updates periodically
-  //   const interval = setInterval(() => {
-  //     fetchStudents();
-  //   }, 20000);
-
-  //   // Cleanup on unmount
-  //   return () => clearInterval(interval);
-  // }, []);
 
   return (
     <section className={classes["section-group"]}>

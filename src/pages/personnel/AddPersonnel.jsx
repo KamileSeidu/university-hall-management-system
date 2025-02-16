@@ -4,8 +4,7 @@ import classes from "./AddPersonnel.module.css";
 function AddPersonnelPage() {
   return (
     <div>
-      <div className={classes.nav} />
-      <div className={classes["section-group"]}>
+      <div className={`${classes["section-group"]} ${classes["card"]}`}>
         <h1 className={classes.heading}>Create A Personnel Record</h1>
         <AddPersonnelForm />
       </div>

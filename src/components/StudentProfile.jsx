@@ -23,8 +23,9 @@ function StudentProfile() {
         </Link>
         <div className={classes.profile}>
           <img
+            className={classes["profile__photo"]}
             src={`http://localhost:3000/uploads/student-photos/${student.photoFileName}`}
-            alt="Kamile-profle-photo"
+            alt="profle-photo"
           />
           <h1>{`${student.firstName} ${fullMiddleName}, ${student.lastName}`}</h1>
           <div className={classes["profile__info"]}>

@@ -1,24 +1,25 @@
-import editIcon from "../assets/edit.svg";
-import deleteIcon from "../assets/delete.svg";
-import checkIn from "../assets/check-in.svg";
-import checkOut from "../assets/check-out.svg";
-import classes from "./StudentDetails.module.css";
+import editIcon from "../../assets/edit.svg";
+import deleteIcon from "../../assets/delete.svg";
+import checkIn from "../../assets/check-in.svg";
+import checkOut from "../../assets/check-out.svg";
+import classes from "./PersonnelDetails.module.css";
 import { Link, useNavigate, useSubmit } from "react-router-dom";
 import { useState } from "react";
-import { getAuthToken } from "../loaders/getToken";
+import { getAuthToken } from "../../loaders/getToken";
 
-function StudentDetails({
+function PersonnelDetails({
   _id,
-  studentId,
+  nssNumber,
   roomNumber,
   bedNumber,
   firstName,
   middleName,
   lastName,
-  programOfStudy,
+  placeOfWork,
   registeredAt,
   isSignedIn = false,
-  fetchStudents,
+  fetchPersonnels,
+  onSelect, //new
 }) {
   const [loading, setLoading] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(isSignedIn);
@@ -27,19 +28,17 @@ function StudentDetails({
   const submit = useSubmit();
   const navigate = useNavigate();
 
-  // console.log(fetchStudents);
-
   function handleEdithandler() {
-    navigate(`/students/${_id}/edit`);
+    navigate(`/nss-personnels/${_id}/edit`);
+    // navigate(`/nss-personnels/addPersonnel`);
   }
 
   const middleNameAbbreviation = middleName ? middleName.slice(0, 1) : "";
-
   function startDeleteHandler() {
     const proceed = window.confirm("Are you sure you want to delete?");
 
     if (proceed) {
-      submit(null, { method: "DELETE", action: `/students/${_id}` });
+      submit(null, { method: "DELETE", action: `/nss-personnels/${_id}` });
     }
   }
 
@@ -55,7 +54,7 @@ function StudentDetails({
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:3000/api/students/${_id}/${action}`,
+          `http://localhost:3000/api/nssPersonnels/${_id}/${action}`,
           {
             method: "POST",
             headers: {
@@ -73,12 +72,12 @@ function StudentDetails({
         // Update local state
         setCurrentStatus(action === "signin");
 
-        fetchStudents();
-        // console.log(` I have been executed ${fetchStudents}`);
+        fetchPersonnels();
+        // console.log(` I have been executed ${fetchPersonnels}`);
 
         // Optional: Show success message
         const actionText = action === "signin" ? "signed in" : "signed out";
-        alert(`Student successfully ${actionText}`);
+        alert(`Personnel successfully ${actionText}`);
       } catch (error) {
         alert(error.message);
       } finally {
@@ -89,16 +88,16 @@ function StudentDetails({
 
   return (
     <>
-      <li className={classes["student-info"]}>
-        <Link to={`/students/${_id}`} className={classes.link}>
-          <ul className={classes["student-info-list"]}>
-            <li>{studentId}</li>
+      <li className={classes["personnel-info"]}>
+        <Link onClick={onSelect} className={classes.link}>
+          <ul className={classes["personnel-info-list"]}>
+            <li>{nssNumber}</li>
             <li>{`${firstName} ${middleNameAbbreviation}${
               middleName ? "." : ""
             } ${lastName}`}</li>
             <li>{`${roomNumber} - ${bedNumber}`}</li>
             {/* <li>{bedNumber}</li> */}
-            <li>{programOfStudy}</li>
+            <li>{placeOfWork}</li>
             <li>{dateOnly}</li>
           </ul>
         </Link>
@@ -109,7 +108,7 @@ function StudentDetails({
               className={classes[`check-in`]}
               onClick={() => handleSignInOut("signin")}
               disabled={loading}
-              title="Sign in student"
+              title="Sign in personnel"
             >
               <img src={checkIn} alt="check-in" />
             </button>
@@ -121,7 +120,7 @@ function StudentDetails({
               className={classes[`check-out`]}
               onClick={() => handleSignInOut("signout")}
               disabled={loading}
-              title="Sign out student"
+              title="Sign out personnel"
             >
               <img src={checkOut} alt="check-out" />
             </button>
@@ -129,14 +128,14 @@ function StudentDetails({
           <button
             className={classes.edit}
             onClick={handleEdithandler}
-            title="Edit student record"
+            title="Edit personnel record"
           >
             <img src={editIcon} alt="edit" />
           </button>
           <button
             className={classes.delete}
             onClick={startDeleteHandler}
-            title="Delete student record"
+            title="Delete personnel record"
           >
             <img src={deleteIcon} alt="delete" />
           </button>
@@ -146,4 +145,4 @@ function StudentDetails({
   );
 }
 
-export default StudentDetails;
+export default PersonnelDetails;
