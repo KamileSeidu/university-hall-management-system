@@ -19,12 +19,13 @@ function StudentDetails({
   registeredAt,
   isSignedIn = false,
   fetchStudents,
+  onSelect,
 }) {
   const [loading, setLoading] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(isSignedIn);
   const token = getAuthToken();
   const dateOnly = registeredAt.slice(0, 10);
-  const submit = useSubmit();
+  // const submit = useSubmit();
   const navigate = useNavigate();
 
   // console.log(fetchStudents);
@@ -35,11 +36,40 @@ function StudentDetails({
 
   const middleNameAbbreviation = middleName ? middleName.slice(0, 1) : "";
 
-  function startDeleteHandler() {
+  // function startDeleteHandler() {
+  //   const proceed = window.confirm("Are you sure you want to delete?");
+
+  //   if (proceed) {
+  //     submit(null, { method: "DELETE", action: `/students/${_id}` });
+  //   }
+  // }
+
+  async function startDeleteHandler() {
     const proceed = window.confirm("Are you sure you want to delete?");
 
     if (proceed) {
-      submit(null, { method: "DELETE", action: `/students/${_id}` });
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/students/${_id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token": token,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          const error = await response.text();
+          throw new Error(error || "Failed to delete student");
+        }
+
+        // Refresh the list immediately after successful deletion
+        fetchStudents();
+      } catch (error) {
+        alert(error.message);
+      }
     }
   }
 
@@ -90,7 +120,7 @@ function StudentDetails({
   return (
     <>
       <li className={classes["student-info"]}>
-        <Link to={`/students/${_id}`} className={classes.link}>
+        <Link onClick={onSelect} className={classes.link}>
           <ul className={classes["student-info-list"]}>
             <li>{studentId}</li>
             <li>{`${firstName} ${middleNameAbbreviation}${

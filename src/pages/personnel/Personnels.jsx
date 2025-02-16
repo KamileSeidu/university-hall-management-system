@@ -12,7 +12,7 @@ function PersonnelsPage() {
 
   // Function to refetch students from the backend
   const fetchPersonnels = async () => {
-    const response = await fetch("http://localhost:3000/api/personnels", {
+    const response = await fetch("http://localhost:3000/api/nssPersonnels", {
       headers: {
         "x-auth-token": token,
       },

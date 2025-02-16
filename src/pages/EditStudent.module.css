@@ -1,0 +1,16 @@
+.section-group {
+  margin: 1rem;
+  padding: 2rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 2px #ccc;
+  border-radius: 5px;
+  min-height: 97.8vh;
+}
+
+.heading {
+  font-size: 2.5rem;
+  margin: 1.5rem 0;
+}

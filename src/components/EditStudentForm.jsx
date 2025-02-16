@@ -1,26 +1,79 @@
 import Button from "./UI/Button";
 import classes from "./StudentForm.module.css";
+import upload from "../assets/upload.svg";
 import {
   Form,
   useNavigate,
   useNavigation,
   useActionData,
 } from "react-router-dom";
+import { useState, useRef } from "react";
 
 function EditStudentForm({ student }) {
   const actionData = useActionData();
   const navigation = useNavigation();
+  const canvasRef = useRef(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const isSubmitting = navigation.state === "submitting";
   const navigate = useNavigate();
   const closeModalHandler = () => {
     navigate(-1);
   };
 
+  const resizeImage = async (file) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = canvasRef.current;
+          const ctx = canvas.getContext("2d");
+
+          // Make it a square using the smaller dimension
+          const size = Math.min(img.width, img.height);
+          canvas.width = size;
+          canvas.height = size;
+
+          // Calculate centering
+          const offsetX = (img.width - size) / 2;
+          const offsetY = (img.height - size) / 2;
+
+          // Draw the centered square image
+          ctx.drawImage(img, offsetX, offsetY, size, size, 0, 0, size, size);
+
+          // Convert to blob
+          canvas.toBlob(
+            (blob) => {
+              resolve(new File([blob], file.name, { type: "image/jpeg" }));
+            },
+            "image/jpeg",
+            0.8
+          );
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleImageChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file));
+      const resizedFile = await resizeImage(file);
+
+      // Create a new FileList-like object with the resized image
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(resizedFile);
+
+      // Update the file input with the resized image
+      event.target.files = dataTransfer.files;
+    }
+  };
+
   return (
     <>
-      <div className={classes.backdrop}></div>
-      <div className={classes.modal}>
-        <h1 className={classes.heading}>Edit Student Record</h1>
+      <div>
         <Form
           method="patch"
           encType="multipart/form-data"
@@ -147,22 +200,34 @@ function EditStudentForm({ student }) {
               )}
             </div>
           </div>
-          {/* <div className={classes["input-group"]}>
-            <label htmlFor="program">Program</label>
+          <div className={classes["file-upload-container"]}>
+            <label htmlFor="photo" className={classes["file-upload-button"]}>
+              <img className={classes["upload-icon"]} src={upload} alt="" />
+              <span>Upload Photo</span>
+            </label>
             <input
-              type="text"
-              id="program"
-              name="programOfStudy"
-              placeholder="Bsc Mathematical Sciences"
-              defaultValue={student ? student.programOfStudy : ""}
-              required
+              className={classes["file-input"]}
+              type="file"
+              id="photo"
+              name="photoFileName"
+              accept="image/*"
+              capture="camera"
+              onChange={handleImageChange}
             />
-            {actionData?.errors?.programOfStudy && (
-              <p className={classes.error}>
-                {actionData.errors.programOfStudy}
-              </p>
+            {actionData?.errors?.photoFileName && (
+              <p className={classes.error}>{actionData.errors.photoFileName}</p>
             )}
-          </div> */}
+            {selectedImage && (
+              <div className={classes.preview}>
+                <img
+                  src={selectedImage}
+                  alt="Preview"
+                  style={{ maxWidth: "150px", maxHeight: "150px" }}
+                />
+              </div>
+            )}
+          </div>
+
           <div className={classes["btn-grp"]}>
             <Button size="btn--block">
               {isSubmitting ? "Updating..." : "Update Record"}
@@ -174,13 +239,14 @@ function EditStudentForm({ student }) {
             >
               Cancel
             </Button>
-            {actionData?.error && (
-              <p className={`${classes.error} ${classes["error-margin"]}`}>
-                {actionData.error}
-              </p>
-            )}
           </div>
+          {actionData?.error && (
+            <p className={`${classes.error} ${classes["error-margin"]}`}>
+              {actionData.error}
+            </p>
+          )}
         </Form>
+        <canvas ref={canvasRef} style={{ display: "none" }} />
       </div>
     </>
   );

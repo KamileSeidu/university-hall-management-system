@@ -4,11 +4,13 @@ import Search from "./Search";
 import profilePlus from "../assets/profile-plus.svg";
 import Card from "./UI/Card";
 import Button from "./UI/Button";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import StudentProfile from "./StudentProfile";
 
 function StudentsList({ students, fetchStudents }) {
   const [searchParam, setSearchParam] = useState("");
+  const [selectedStudent, setSelectedStudent] = useState(null);
 
   // console.log(fetchStudents);
 
@@ -47,6 +49,7 @@ function StudentsList({ students, fetchStudents }) {
         key={student._id}
         {...student}
         fetchStudents={fetchStudents}
+        onSelect={() => setSelectedStudent(student)}
       />
     ))
   ) : (
@@ -72,7 +75,12 @@ function StudentsList({ students, fetchStudents }) {
         <h1>Action</h1>
       </header>
       <ul className={classes["student-list"]}>{studentsList}</ul>
-      <Outlet />
+      {selectedStudent && (
+        <StudentProfile
+          student={selectedStudent}
+          onClose={() => setSelectedStudent(null)}
+        />
+      )}
     </Card>
   );
 }

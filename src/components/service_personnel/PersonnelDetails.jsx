@@ -25,20 +25,51 @@ function PersonnelDetails({
   const [currentStatus, setCurrentStatus] = useState(isSignedIn);
   const token = getAuthToken();
   const dateOnly = registeredAt.slice(0, 10);
-  const submit = useSubmit();
+  // const submit = useSubmit();
   const navigate = useNavigate();
 
   function handleEdithandler() {
     navigate(`/nss-personnels/${_id}/edit`);
-    // navigate(`/nss-personnels/addPersonnel`);
   }
 
   const middleNameAbbreviation = middleName ? middleName.slice(0, 1) : "";
-  function startDeleteHandler() {
+
+  // function startDeleteHandler() {
+  //   const proceed = window.confirm("Are you sure you want to delete?");
+
+  //   if (proceed) {
+  //     submit(null, { method: "DELETE", action: `/nss-personnels/${_id}` });
+  //   }
+
+  // }
+
+  //New
+  async function startDeleteHandler() {
     const proceed = window.confirm("Are you sure you want to delete?");
 
     if (proceed) {
-      submit(null, { method: "DELETE", action: `/nss-personnels/${_id}` });
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/nssPersonnels/${_id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token": token,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          const error = await response.text();
+          throw new Error(error || "Failed to delete personnel");
+        }
+
+        // Refresh the list immediately after successful deletion
+        fetchPersonnels();
+      } catch (error) {
+        alert(error.message);
+      }
     }
   }
 

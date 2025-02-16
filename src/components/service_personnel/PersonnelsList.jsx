@@ -41,7 +41,7 @@ function PersonnelsList({ personnels, fetchPersonnels }) {
         key={personnel._id}
         {...personnel}
         fetchPersonnels={fetchPersonnels}
-        onSelect={() => setSelectedPersonnel(personnel)} //new
+        onSelect={() => setSelectedPersonnel(personnel)} //New
       />
     ))
   ) : (

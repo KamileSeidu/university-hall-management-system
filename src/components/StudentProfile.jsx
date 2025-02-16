@@ -2,22 +2,18 @@ import classes from "./StudentProfile.module.css";
 import Button from "./UI/Button";
 import thumbs from "../assets/profileIcons/thumbs.svg";
 import Icon from "./UI/icon";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function StudentProfile() {
-  const student = useLoaderData();
-  const navigate = useNavigate();
-  const closeModalHandler = () => {
-    navigate(-1);
-  };
-
+function StudentProfile({ student, onClose }) {
+  console.log(student);
+  console.log(student.photoFileName);
   const fullMiddleName = student.middleName ? student.middleName : "";
 
   return (
     <>
-      <div className={classes.backdrop} onClick={closeModalHandler}></div>
+      <div className={classes.backdrop} onClick={onClose}></div>
       <div className={classes.modal}>
-        <Link to="/students" className={classes.link}>
+        <Link onClick={onClose} className={classes.link}>
           {" "}
           ✕
         </Link>
@@ -57,7 +53,7 @@ function StudentProfile() {
             </div>
           </div>
         </div>
-        <Button size="btn--block" onClick={closeModalHandler}>
+        <Button size="btn--block" onClick={onClose}>
           V-Mate <img src={thumbs} className={classes.thumbs} alt="thumbs-up" />
         </Button>
       </div>

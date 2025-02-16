@@ -4,7 +4,6 @@ import StudentsPage from "./pages/Students";
 import RootLayout from "./pages/RootLayout";
 import DashboardPage from "./pages/Dashboard";
 import ErorPage from "./pages/Error";
-import StudentProfile from "./components/StudentProfile";
 import AddStudentPage from "./pages/AddStudent";
 import Login from "./pages/Login";
 import KeyLogsPage from "./pages/key-log/KeyLogs";
@@ -19,7 +18,6 @@ import {
 } from "../src/loaders/studentLoaders";
 import {
   addNewStudentAction,
-  deleteStudentAction,
   editStudentAction,
 } from "./loaders/studentActions";
 import { dashboardLoader } from "./loaders/dashboardLoader";
@@ -64,28 +62,6 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: studentsLoader,
-        children: [
-          {
-            path: ":studentId",
-            element: (
-              <PrivateRoute>
-                <StudentProfile />
-              </PrivateRoute>
-            ),
-            loader: studentDetailsLoader,
-            action: deleteStudentAction,
-          },
-          {
-            path: ":studentId/edit",
-            element: (
-              <PrivateRoute>
-                <EditStudentPage />
-              </PrivateRoute>
-            ),
-            loader: studentDetailsLoader,
-            action: editStudentAction,
-          },
-        ],
       },
       {
         path: "students/addStudent",
@@ -95,6 +71,16 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         action: addNewStudentAction,
+      },
+      {
+        path: "students/:studentId/edit",
+        element: (
+          <PrivateRoute>
+            <EditStudentPage />
+          </PrivateRoute>
+        ),
+        loader: studentDetailsLoader,
+        action: editStudentAction,
       },
       {
         path: "nss-personnels",
