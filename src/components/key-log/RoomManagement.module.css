@@ -1,0 +1,29 @@
+.card {
+  border-top: 1px solid #ccc;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto 500px;
+}
+
+.heading {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  align-self: center;
+}
+
+.rooms {
+  max-height: 84.7vh;
+  margin-top: 2rem;
+  padding-top: 10px;
+  padding-right: 10px;
+  overflow: auto;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}

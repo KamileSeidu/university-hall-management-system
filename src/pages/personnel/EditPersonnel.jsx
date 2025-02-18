@@ -12,7 +12,7 @@ function EditPersonnelPage() {
     setPersonnelData(personnel);
   }, [personnel]);
 
-  //   console.log(personnel);
+  console.log(personnel);
   return (
     <>
       <div className={`${classes["section-group"]} ${classes["card"]}`}>

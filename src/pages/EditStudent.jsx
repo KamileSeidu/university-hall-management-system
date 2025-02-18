@@ -12,6 +12,7 @@ function EditStudentPage() {
     setStudentData(student);
   }, [student]);
 
+  console.log(student);
   return (
     <div className={`${classes["section-group"]} ${classes.card}`}>
       <h1 className={classes.heading}>Edit Student Record</h1>

@@ -27,7 +27,10 @@ import {
   addNewPersonnelAction,
   editPersonnelAction,
 } from "./loaders/personnel/nssPersonnelAction";
-import { personnelsLoader } from "./loaders/personnel/nssPersonnelLoader";
+import {
+  personnelsLoader,
+  personnelDetailsLoader,
+} from "./loaders/personnel/nssPersonnelLoader";
 
 const router = createBrowserRouter([
   {
@@ -107,8 +110,8 @@ const router = createBrowserRouter([
             <EditPersonnelPage />
           </PrivateRoute>
         ),
+        loader: personnelDetailsLoader,
         action: editPersonnelAction,
-        loader: personnelsLoader,
       },
       {
         path: "key-logs",

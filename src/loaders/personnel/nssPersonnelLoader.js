@@ -21,10 +21,10 @@ export const personnelsLoader = async () => {
   }
 };
 
-export const PersonnelDetailsLoader = async ({ params }) => {
-  const id = params.nssNumber;
-  console.log(id);
+export const personnelDetailsLoader = async ({ params }) => {
+  const id = params.personnelId;
   const token = getAuthToken();
+  // console.log(id);
   const response = await fetch(
     `http://localhost:3000/api/nssPersonnels/${id}`,
     {

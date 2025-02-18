@@ -1,7 +1,10 @@
+import classes from "./KeyLogs.module.css";
+import RoomManagement from "../../components/key-log/RoomManagement";
+
 function KeyLogsPage() {
   return (
-    <div>
-      <h1>This is the Key Log Page !</h1>
+    <div className={`${classes["section-group"]} ${classes.card}`}>
+      <RoomManagement />
     </div>
   );
 }
