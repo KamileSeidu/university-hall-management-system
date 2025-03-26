@@ -34,15 +34,6 @@ function PersonnelDetails({
 
   const middleNameAbbreviation = middleName ? middleName.slice(0, 1) : "";
 
-  // function startDeleteHandler() {
-  //   const proceed = window.confirm("Are you sure you want to delete?");
-
-  //   if (proceed) {
-  //     submit(null, { method: "DELETE", action: `/nss-personnels/${_id}` });
-  //   }
-
-  // }
-
   //New
   async function startDeleteHandler() {
     const proceed = window.confirm("Are you sure you want to delete?");

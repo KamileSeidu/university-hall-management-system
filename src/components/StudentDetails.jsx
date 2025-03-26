@@ -36,14 +36,6 @@ function StudentDetails({
 
   const middleNameAbbreviation = middleName ? middleName.slice(0, 1) : "";
 
-  // function startDeleteHandler() {
-  //   const proceed = window.confirm("Are you sure you want to delete?");
-
-  //   if (proceed) {
-  //     submit(null, { method: "DELETE", action: `/students/${_id}` });
-  //   }
-  // }
-
   async function startDeleteHandler() {
     const proceed = window.confirm("Are you sure you want to delete?");
 

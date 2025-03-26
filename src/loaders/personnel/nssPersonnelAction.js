@@ -10,6 +10,7 @@ export const addNewPersonnelAction = async ({ request }) => {
   // Extract fields from formData
   const nssNumber = formData.get("nssNumber");
   const phoneNumber = formData.get("phoneNumber");
+  const emmergencyNumber = formData.get("emmergencyNumber");
   const firstName = formData.get("firstName");
   const lastName = formData.get("lastName");
   const roomNumber = formData.get("roomNumber");
@@ -28,6 +29,13 @@ export const addNewPersonnelAction = async ({ request }) => {
     !/^[0-9]{10}$/.test(phoneNumber)
   ) {
     errors.phoneNumber = "Phone number must be a valid 10-digit number.";
+  }
+  if (
+    !emmergencyNumber ||
+    emmergencyNumber.trim() === "" ||
+    !/^[0-9]{10}$/.test(emmergencyNumber)
+  ) {
+    errors.emmergencyNumber = "Phone number must be a valid 10-digit number.";
   }
   if (!firstName || firstName.trim() === "") {
     errors.firstName = "First name is required.";
@@ -86,6 +94,7 @@ export const editPersonnelAction = async ({ request, params }) => {
   // Extract fields from formData
   const nssNumber = formData.get("nssNumber"); //Did some giminastics here to avoid NssNumber name clash
   const phoneNumber = formData.get("phoneNumber");
+  const emmergencyNumber = formData.get("emmergencyNumber");
   const firstName = formData.get("firstName");
   const lastName = formData.get("lastName");
   const roomNumber = formData.get("roomNumber");
@@ -103,6 +112,13 @@ export const editPersonnelAction = async ({ request, params }) => {
     !/^[0-9]{10}$/.test(phoneNumber)
   ) {
     errors.phoneNumber = "Phone number must be a valid 10-digit number.";
+  }
+  if (
+    !emmergencyNumber ||
+    emmergencyNumber.trim() === "" ||
+    !/^[0-9]{10}$/.test(emmergencyNumber)
+  ) {
+    errors.emmergencyNumber = "Phone number must be a valid 10-digit number.";
   }
   if (!firstName || firstName.trim() === "") {
     errors.firstName = "First name is required.";

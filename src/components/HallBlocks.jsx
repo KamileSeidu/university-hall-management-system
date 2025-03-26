@@ -3,6 +3,9 @@ import DoughnutChart from "./DoughnutChart";
 import classes from "./HallBlocks.module.css";
 
 function HallBlocks({ hallBlocks }) {
+  // console.log(rooms);
+
+  console.log(hallBlocks);
   const blocks =
     hallBlocks.length === 0 ? (
       <p>No Blocks data available right now!</p>
@@ -12,7 +15,7 @@ function HallBlocks({ hallBlocks }) {
 
   const blockData = hallBlocks.map((block) => ({
     blockLetter: block.blockLetter,
-    studentCount: block.students.length,
+    peopleCount: block.students.length + block.nssPersonnels.length,
   }));
 
   // console.log(blockData);

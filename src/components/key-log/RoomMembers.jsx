@@ -1,18 +1,32 @@
+import { useState } from "react";
+import RoomMember from "./RoomMember";
 import classes from "./RoomMembers.module.css";
+import VerificationProfile from "./VerificationProfile";
 
-function RoomMembers() {
+function RoomMembers({ fetchRoomsData, roomMembers }) {
+  const [selectedRoomMember, setSelectedRoomMember] = useState(null);
+
+  const roomMemberElements = roomMembers.map((roomMemberData, index) => (
+    <RoomMember
+      key={roomMemberData._id || index}
+      member={roomMemberData.member}
+      memberType={roomMemberData.memberType}
+      onSelect={() => setSelectedRoomMember(roomMemberData)}
+    />
+  ));
+
   return (
-    <ul className={classes["room-members"]}>
-      <li className={classes["room-member"]}>
-        <p>Kamile Seidu</p>
-        <p>0557148772</p>
-        <p>Bsc Computer Science</p>
+    <div>
+      <ul className={classes["room-members"]}>{roomMemberElements}</ul>
 
-        <button className={`${classes.btn} ${classes["btn--verify"]}`}>
-          Verify
-        </button>
-      </li>
-    </ul>
+      {selectedRoomMember && (
+        <VerificationProfile
+          member={selectedRoomMember}
+          onClose={() => setSelectedRoomMember(null)}
+          fetchRoomsData={fetchRoomsData}
+        />
+      )}
+    </div>
   );
 }
 

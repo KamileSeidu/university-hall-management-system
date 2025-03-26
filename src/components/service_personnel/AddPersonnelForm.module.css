@@ -132,6 +132,12 @@
   margin: 1rem;
 }
 
+.dual-input-group {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
 /* Keyframes */
 @keyframes slideIn {
   from {

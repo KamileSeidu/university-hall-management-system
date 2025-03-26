@@ -1,33 +1,5 @@
 .room-members {
-  background-color: white;
-  padding: 2rem;
+  padding: 2rem 0 0 0;
   border-radius: 8px;
-  max-height: 300px;
   overflow: auto;
-}
-
-.room-member {
-  display: flex;
-  gap: 30px;
-  padding-bottom: 2rem;
-  /* border-bottom: 1px solid #ccc; */
-}
-
-.room-member p {
-  color: black;
-  align-self: center;
-}
-
-.btn {
-  color: white;
-  border-radius: 24px;
-  outline: none;
-  border: 0;
-  padding: 1.2rem 2rem;
-  cursor: pointer;
-}
-
-.btn--verify {
-  background-color: dodgerblue;
-  flex: 1;
 }

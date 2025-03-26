@@ -10,7 +10,7 @@ function DonutGraph({ blockData }) {
     datasets: [
       {
         label: "Number of Students",
-        data: blockData.map((block) => block.studentCount),
+        data: blockData.map((block) => block.peopleCount),
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
           "rgba(54, 162, 235, 0.3)",

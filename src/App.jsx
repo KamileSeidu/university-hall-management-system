@@ -31,6 +31,7 @@ import {
   personnelsLoader,
   personnelDetailsLoader,
 } from "./loaders/personnel/nssPersonnelLoader";
+import { roomsLoader } from "./loaders/key-logs/keyLogsLoader";
 
 const router = createBrowserRouter([
   {
@@ -120,6 +121,7 @@ const router = createBrowserRouter([
             <KeyLogsPage />
           </PrivateRoute>
         ),
+        loader: roomsLoader,
       },
     ],
   },

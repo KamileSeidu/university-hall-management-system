@@ -168,18 +168,35 @@ function StudentForm() {
               <p className={classes.error}>{actionData.errors.roomNumber}</p>
             )}
           </div>
-          <div className={classes["input-group"]}>
-            <label htmlFor="bedNumber">Bed Number</label>
-            <input
-              type="number"
-              id="bedNumber"
-              name="bedNumber"
-              placeholder="1"
-              required
-            />
-            {actionData?.errors?.bedNumber && (
-              <p className={classes.error}>{actionData.errors.bedNumber}</p>
-            )}
+          <div className={classes["dual-input-group"]}>
+            <div className={classes["input-group"]}>
+              <label htmlFor="bedNumber">Bed Number</label>
+              <input
+                type="number"
+                id="bedNumber"
+                name="bedNumber"
+                placeholder="1"
+                required
+              />
+              {actionData?.errors?.bedNumber && (
+                <p className={classes.error}>{actionData.errors.bedNumber}</p>
+              )}
+            </div>
+            <div className={classes["input-group"]}>
+              <label htmlFor="emmergencyNumber">Emmergency Contact</label>
+              <input
+                type="number"
+                id="emmergencyNumber"
+                name="emmergencyNumber"
+                placeholder="0202664879"
+                required
+              />
+              {actionData?.errors?.emmergencyNumber && (
+                <p className={classes.error}>
+                  {actionData.errors.emmergencyNumber}
+                </p>
+              )}
+            </div>
           </div>
         </div>
         <div className={classes["file-upload-container"]}>

@@ -21,7 +21,7 @@ function SearchBox({ onSearchParam }) {
         type="text"
         value={searchParam}
         onChange={searchParamChangeHandler}
-        placeholder="22041021 or J40"
+        placeholder="J40"
       />
       <button onClick={handleFormData}>
         <img className={classes["search-img"]} src={search} alt="search-icon" />
