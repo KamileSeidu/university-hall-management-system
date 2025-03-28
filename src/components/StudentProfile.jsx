@@ -5,8 +5,8 @@ import Icon from "./UI/icon";
 import { Link } from "react-router-dom";
 
 function StudentProfile({ student, onClose }) {
-  console.log(student);
-  console.log(student.photoFileName);
+  // console.log(student);
+  // console.log(student.photoFileName);
   const fullMiddleName = student.middleName ? student.middleName : "";
 
   return (
@@ -39,17 +39,30 @@ function StudentProfile({ student, onClose }) {
             </div>
           </div>
           <div className={classes["profile__info"]}>
-            <Icon name="phone" />
-            <div>
-              <h2>Contact</h2>
-              <h3>{student.phoneNumber}</h3>
-            </div>
-          </div>
-          <div className={classes["profile__info"]}>
             <Icon name="book" />
             <div>
               <h2>Program</h2>
               <h3>{student.programOfStudy}</h3>
+            </div>
+          </div>
+          <div className={classes["profile__info--container"]}>
+            <div
+              className={`${classes["profile__info"]} ${classes["profile__info--contact"]}`}
+            >
+              <Icon name="phone" />
+              <div>
+                <h2>Contact</h2>
+                <h3>{student.phoneNumber}</h3>
+              </div>
+            </div>
+            <div
+              className={`${classes["profile__info"]} ${classes["profile__info--emmergency"]}`}
+            >
+              <Icon name="phone" />
+              <div>
+                <h2>Emmergency Contact</h2>
+                <h3>{student.emmergencyNumber}</h3>
+              </div>
             </div>
           </div>
         </div>

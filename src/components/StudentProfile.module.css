@@ -40,6 +40,17 @@
   font-size: 1.4rem;
 }
 
+.profile__info--container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.profile__info--container .profile__info.profile__info--emmergency {
+  flex-grow: 1;
+}
+
 .thumbs {
   width: 25px;
   height: 25px;
@@ -76,11 +87,11 @@
 
 .link {
   text-decoration: none;
-  color: inherit; /* Inherit the color from the parent, or specify a custom color */
+  color: inherit;
 }
 
 .link:hover {
-  color: #007bff; /* Optional: Change color on hover */
+  color: #007bff;
 }
 
 /* Animations */

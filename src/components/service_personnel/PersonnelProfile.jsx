@@ -38,18 +38,30 @@ function PersonnelProfile({ personnel, onClose }) {
               <h3>{`${personnel.roomNumber}`}</h3>
             </div>
           </div>
-          <div className={classes["profile__info"]}>
-            <Icon name="phone" />
-            <div>
-              <h2>Contact</h2>
-              <h3>{personnel.phoneNumber}</h3>
-            </div>
-          </div>
+
           <div className={classes["profile__info"]}>
             <Icon name="book" />
             <div>
               <h2>Place of Work</h2>
               <h3>{personnel.placeOfWork}</h3>
+            </div>
+          </div>
+          <div className={classes["profile__info--container"]}>
+            <div className={classes["profile__info"]}>
+              <Icon name="phone" />
+              <div>
+                <h2>Contact</h2>
+                <h3>{personnel.phoneNumber}</h3>
+              </div>
+            </div>
+            <div
+              className={`${classes["profile__info"]} ${classes["profile__info--emmergency"]}`}
+            >
+              <Icon name="phone" />
+              <div>
+                <h2>Emmergency Contact</h2>
+                <h3>{personnel.emmergencyNumber}</h3>
+              </div>
             </div>
           </div>
         </div>
