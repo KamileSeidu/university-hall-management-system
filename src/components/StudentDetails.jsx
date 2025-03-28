@@ -28,7 +28,7 @@ function StudentDetails({
   // const submit = useSubmit();
   const navigate = useNavigate();
 
-  // console.log(fetchStudents);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   function handleEdithandler() {
     navigate(`/students/${_id}/edit`);
@@ -41,16 +41,13 @@ function StudentDetails({
 
     if (proceed) {
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/students/${_id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              "x-auth-token": token,
-            },
-          }
-        );
+        const response = await fetch(`${apiUrl}/students/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": token,
+          },
+        });
 
         if (!response.ok) {
           const error = await response.text();
@@ -76,16 +73,13 @@ function StudentDetails({
     if (proceed) {
       try {
         setLoading(true);
-        const response = await fetch(
-          `http://localhost:3000/api/students/${_id}/${action}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-auth-token": token,
-            },
-          }
-        );
+        const response = await fetch(`${apiUrl}/students/${_id}/${action}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": token,
+          },
+        });
 
         if (!response.ok) {
           const error = await response.text();

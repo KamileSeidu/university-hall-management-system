@@ -1,9 +1,10 @@
 import { getAuthToken } from "../getToken";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const personnelsLoader = async () => {
   const token = getAuthToken();
 
-  const response = await fetch("http://localhost:3000/api/nssPersonnels", {
+  const response = await fetch(`${apiUrl}/nssPersonnels`, {
     headers: {
       "x-auth-token": token,
     },
@@ -25,14 +26,11 @@ export const personnelDetailsLoader = async ({ params }) => {
   const id = params.personnelId;
   const token = getAuthToken();
   // console.log(id);
-  const response = await fetch(
-    `http://localhost:3000/api/nssPersonnels/${id}`,
-    {
-      headers: {
-        "x-auth-token": token,
-      },
-    }
-  );
+  const response = await fetch(`${apiUrl}/nssPersonnels/${id}`, {
+    headers: {
+      "x-auth-token": token,
+    },
+  });
 
   if (!response.ok) {
     // Manually throw a JSON response

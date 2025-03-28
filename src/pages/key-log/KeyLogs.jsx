@@ -10,10 +10,12 @@ function KeyLogsPage() {
   const initialRoomsData = useLoaderData();
   const [roomsData, setRoomsData] = useState(initialRoomsData);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   //Function to refetch rooms data from backend
 
   const fetchRoomsData = async () => {
-    const response = await fetch("http://localhost:3000/api/rooms", {
+    const response = await fetch(`${apiUrl}/rooms`, {
       headers: {
         "x-auth-token": token,
       },

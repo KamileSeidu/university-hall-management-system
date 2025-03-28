@@ -7,10 +7,12 @@ function VerificationProfile({ fetchRoomsData, member, onClose }) {
   const token = getAuthToken();
 
   const [loading, setLoading] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const imgUrl = import.meta.env.VITE_IMG_URL;
 
-  let url = `http://localhost:3000/uploads/nssPersonnel-photos/`;
+  let url = `${imgUrl}/nssPersonnel-photos/`;
   if (member.memberType === "Student") {
-    url = `http://localhost:3000/uploads/student-photos/`;
+    url = `${imgUrl}/student-photos/`;
   }
 
   async function handleKeyCollectionSubmission(action) {
@@ -42,7 +44,7 @@ function VerificationProfile({ fetchRoomsData, member, onClose }) {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:3000/api/rooms/${member.member.roomNumber}/transfer-key`,
+          `${apiUrl}/rooms/${member.member.roomNumber}/transfer-key`,
           {
             method: "POST",
             headers: {

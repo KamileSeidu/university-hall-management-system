@@ -2,21 +2,22 @@ import { getAuthToken } from "./getToken";
 
 export const dashboardLoader = async () => {
   const token = getAuthToken();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   // Fetch data from both endpoints concurrently
   const [studentsResponse, hallBlocksResponse, roomsResponse] =
     await Promise.all([
-      fetch("http://localhost:3000/api/students", {
+      fetch(`${apiUrl}/students`, {
         headers: {
           "x-auth-token": token,
         },
       }),
-      fetch("http://localhost:3000/api/hallblocks", {
+      fetch(`${apiUrl}/hallblocks`, {
         headers: {
           "x-auth-token": token,
         },
       }),
-      fetch("http://localhost:3000/api/rooms", {
+      fetch(`${apiUrl}/rooms`, {
         headers: {
           "x-auth-token": token,
         },

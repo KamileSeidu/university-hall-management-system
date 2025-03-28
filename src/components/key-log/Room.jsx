@@ -1,108 +1,3 @@
-// import { useState } from "react";
-// import classes from "./Room.module.css";
-// import RoomMembers from "./RoomMembers";
-// import { getAuthToken } from "../../loaders/getToken";
-// import { motion } from "framer-motion";
-
-// function Room({ fetchRoomsData, currentKeyHolder, roomMembers, roomNumber }) {
-//   const [keyHistory, setKeyHistory] = useState([]); // Store key history
-//   const [showKeyHistory, setShowKeyHistory] = useState(false); // Toggle view
-
-//   const token = getAuthToken();
-
-//   let keyHolderDisplay = "Hall Assistant";
-//   if (currentKeyHolder?.holder?.firstName && currentKeyHolder.holder.lastName) {
-//     keyHolderDisplay = `${currentKeyHolder.holder.firstName} ${currentKeyHolder.holder.lastName}`;
-//   }
-
-//   // Fetch key history and toggle view
-//   async function toggleView() {
-//     if (!showKeyHistory) {
-//       try {
-//         const response = await fetch(
-//           `http://localhost:3000/api/rooms/${roomNumber}/key-history`,
-//           {
-//             method: "GET",
-//             headers: {
-//               "Content-Type": "application/json",
-//               "x-auth-token": token,
-//             },
-//           }
-//         );
-
-//         if (!response.ok) {
-//           const error = await response.text();
-//           throw new Error(error || "Failed to fetch history");
-//         }
-
-//         const data = await response.json();
-
-//         // Get the last 5 transactions
-//         const lastFiveTransactions = data.slice(-5).reverse();
-//         setKeyHistory(lastFiveTransactions);
-//       } catch (error) {
-//         console.error("Error fetching history:", error.message);
-//       }
-//     }
-
-//     setShowKeyHistory((prev) => !prev); // Toggle the view
-//   }
-
-//   // Format date and time
-//   function formatDateTime(timestamp) {
-//     const date = new Date(timestamp);
-//     return date.toLocaleString(); // Formats to "MM/DD/YYYY, HH:MM:SS AM/PM"
-//   }
-
-//   return (
-//     <div className={`${classes["room-card"]} `}>
-//       <div className={classes["room-header"]}>
-//         <h1>Room {roomNumber}</h1>
-//         <h2>Key Holder: {keyHolderDisplay}</h2>
-//         <button
-//           onClick={toggleView}
-//           className={`${classes.btn} ${classes["key-history"]}`}
-//         >
-//           {showKeyHistory ? "Show Room Members" : "Show Key History"}
-//         </button>
-//       </div>
-
-//       {/* Toggle between Key History and Room Members */}
-//       {showKeyHistory ? (
-//         <motion.div layout className={classes["history-container"]}>
-//           <h3>Last 5 Key Transactions:</h3>
-//           {keyHistory.length > 0 ? (
-//             <motion.ul layout>
-//               {keyHistory.map((entry, index) => {
-//                 const isIssued = entry.action === "ISSUED";
-//                 const person = isIssued ? entry.holder : entry.submittedBy;
-
-//                 return (
-//                   <li key={index}>
-//                     <strong>{isIssued ? "Collected" : "Submitted"} by:</strong>{" "}
-//                     {person?.firstName || "Unknown"}{" "}
-//                     {person?.lastName || "User"} <br />
-//                     <strong>Date:</strong> {formatDateTime(entry.timestamp)}
-//                   </li>
-//                 );
-//               })}
-//             </motion.ul>
-//           ) : (
-//             <p>No key history available.</p>
-//           )}
-//         </motion.div>
-//       ) : (
-//         <RoomMembers
-//           roomMembers={roomMembers}
-//           fetchRoomsData={fetchRoomsData}
-//         />
-//       )}
-//     </div>
-//   );
-// }
-
-// export default Room;
-
 import { useState } from "react";
 import classes from "./Room.module.css";
 import RoomMembers from "./RoomMembers";
@@ -114,6 +9,7 @@ function Room({ fetchRoomsData, currentKeyHolder, roomMembers, roomNumber }) {
   const [showKeyHistory, setShowKeyHistory] = useState(false); // Toggle view
 
   const token = getAuthToken();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   let keyHolderDisplay = "Hall Assistant";
   if (currentKeyHolder?.holder?.firstName && currentKeyHolder.holder.lastName) {
@@ -125,7 +21,7 @@ function Room({ fetchRoomsData, currentKeyHolder, roomMembers, roomNumber }) {
     if (!showKeyHistory) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/rooms/${roomNumber}/key-history`,
+          `${apiUrl}/rooms/${roomNumber}/key-history`,
           {
             method: "GET",
             headers: {

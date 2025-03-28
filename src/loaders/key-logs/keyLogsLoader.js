@@ -1,9 +1,10 @@
 import { getAuthToken } from "../getToken";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const roomsLoader = async () => {
   const token = getAuthToken();
 
-  const response = await fetch("http://localhost:3000/api/rooms", {
+  const response = await fetch(`${apiUrl}/rooms`, {
     headers: {
       "x-auth-token": token,
     },

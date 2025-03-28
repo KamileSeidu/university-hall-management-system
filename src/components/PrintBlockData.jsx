@@ -7,7 +7,9 @@ function PrintBlockData({ block }) {
     return (
       <li key={student._id} className="table-list">
         <p>{student.studentId}</p>
-        <p>{`${student.firstName} ${student.middleName} ${student.lastName} `}</p>
+        <p>{`${student.firstName} ${
+          student.middleName ? student.middleName : ""
+        } ${student.lastName} `}</p>
         <p>{student.programOfStudy}</p>
         <p>{student.roomNumber}</p>
         <p>{student.phoneNumber}</p>
@@ -20,7 +22,9 @@ function PrintBlockData({ block }) {
     return (
       <li key={nss._id} className="table-list">
         <p>{nss.nssNumber}</p>
-        <p>{`${nss.firstName} ${nss.middleName} ${nss.lastName} `}</p>
+        <p>{`${nss.firstName} ${nss.middleName ? nss.middleName : ""} ${
+          nss.lastName
+        } `}</p>
         <p>{nss.placeOfWork}</p>
         <p>{nss.roomNumber}</p>
         <p>{nss.phoneNumber}</p>

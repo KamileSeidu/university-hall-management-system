@@ -8,13 +8,14 @@ import { getAuthToken } from "../loaders/getToken";
 function StudentsPage() {
   // const students = useLoaderData();
   const token = getAuthToken();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialStudents = useLoaderData();
   const [students, setStudents] = useState(initialStudents);
 
   // Function to refetch students from the backend
   const fetchStudents = async () => {
-    const response = await fetch("http://localhost:3000/api/students", {
+    const response = await fetch(`${apiUrl}/students`, {
       headers: {
         "x-auth-token": token,
       },

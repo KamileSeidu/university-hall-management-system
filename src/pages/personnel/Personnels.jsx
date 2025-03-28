@@ -10,9 +10,11 @@ function PersonnelsPage() {
   const initialPersonnels = useLoaderData();
   const [personnels, setPersonnels] = useState(initialPersonnels);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // Function to refetch students from the backend
   const fetchPersonnels = async () => {
-    const response = await fetch("http://localhost:3000/api/nssPersonnels", {
+    const response = await fetch(`${apiUrl}/nssPersonnels`, {
       headers: {
         "x-auth-token": token,
       },

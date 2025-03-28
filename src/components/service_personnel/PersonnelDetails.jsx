@@ -27,6 +27,7 @@ function PersonnelDetails({
   const dateOnly = registeredAt.slice(0, 10);
   // const submit = useSubmit();
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   function handleEdithandler() {
     navigate(`/nss-personnels/${_id}/edit`);
@@ -40,16 +41,13 @@ function PersonnelDetails({
 
     if (proceed) {
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/nssPersonnels/${_id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              "x-auth-token": token,
-            },
-          }
-        );
+        const response = await fetch(`${apiUrl}/nssPersonnels/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": token,
+          },
+        });
 
         if (!response.ok) {
           const error = await response.text();
@@ -76,7 +74,7 @@ function PersonnelDetails({
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:3000/api/nssPersonnels/${_id}/${action}`,
+          `${apiUrl}/nssPersonnels/${_id}/${action}`,
           {
             method: "POST",
             headers: {

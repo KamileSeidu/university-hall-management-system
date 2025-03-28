@@ -8,6 +8,7 @@ function PersonnelProfile({ personnel, onClose }) {
   // console.log(personnel.photoFileName);
 
   const fullMiddleName = personnel.middleName ? personnel.middleName : "";
+  const imgUrl = import.meta.env.VITE_IMG_URL;
 
   return (
     <>
@@ -20,7 +21,7 @@ function PersonnelProfile({ personnel, onClose }) {
         <div className={classes.profile}>
           <img
             className={classes["profile__photo"]}
-            src={`http://localhost:3000/uploads/nssPersonnel-photos/${personnel.photoFileName}`}
+            src={`${imgUrl}/nssPersonnel-photos/${personnel.photoFileName}`}
             alt="profle-photo"
           />
           <h1>{`${personnel.firstName} ${fullMiddleName}, ${personnel.lastName}`}</h1>

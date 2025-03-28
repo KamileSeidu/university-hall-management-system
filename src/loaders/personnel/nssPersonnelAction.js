@@ -1,5 +1,6 @@
 import { redirect } from "react-router-dom";
 import { getAuthToken } from "../getToken";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const addNewPersonnelAction = async ({ request }) => {
   const token = getAuthToken();
@@ -62,7 +63,7 @@ export const addNewPersonnelAction = async ({ request }) => {
   }
 
   try {
-    const response = await fetch("http://localhost:3000/api/nssPersonnels", {
+    const response = await fetch(`${apiUrl}/nssPersonnels`, {
       method: "POST",
       headers: {
         "x-auth-token": token,
@@ -142,16 +143,13 @@ export const editPersonnelAction = async ({ request, params }) => {
   }
 
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/nssPersonnels/${personnelId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "x-auth-token": token,
-        },
-        body: formData,
-      }
-    );
+    const response = await fetch(`${apiUrl}/nssPersonnels/${personnelId}`, {
+      method: "PATCH",
+      headers: {
+        "x-auth-token": token,
+      },
+      body: formData,
+    });
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -170,15 +168,12 @@ export const deletePersonnelAction = async ({ params }) => {
   const token = getAuthToken();
   const { personnelId } = params;
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/nssPersonnels/${personnelId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "x-auth-token": token,
-        },
-      }
-    );
+    const response = await fetch(`${apiUrl}/nssPersonnels/${personnelId}`, {
+      method: "DELETE",
+      headers: {
+        "x-auth-token": token,
+      },
+    });
 
     if (!response.ok) {
       const errorText = await response.text();

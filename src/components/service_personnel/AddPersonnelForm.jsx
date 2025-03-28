@@ -9,6 +9,7 @@ function PersonnelForm() {
   const navigation = useNavigation();
   const canvasRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imageError, setImageError] = useState(null);
   const isSubmitting = navigation.state === "submitting";
 
   const resizeImage = async (file) => {
@@ -51,6 +52,7 @@ function PersonnelForm() {
     const file = event.target.files[0];
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
+      setImageError(null); // Clear error when image is selected
       const resizedFile = await resizeImage(file);
 
       // Create a new FileList-like object with the resized image
@@ -62,12 +64,20 @@ function PersonnelForm() {
     }
   };
 
+  const handleSubmit = (event) => {
+    if (!selectedImage) {
+      event.preventDefault();
+      setImageError("Please select a photo");
+    }
+  };
+
   return (
     <div>
       <Form
         method="post"
         encType="multipart/form-data"
         className={classes.form}
+        onSubmit={handleSubmit}
       >
         <div className={classes.group}>
           <div className={classes["input-group"]}>
@@ -190,7 +200,9 @@ function PersonnelForm() {
                 required
               />
               {actionData?.errors?.emmergencyNumber && (
-                <p className={classes.error}>{actionData.errors.bedNumber}</p>
+                <p className={classes.error}>
+                  {actionData.errors.emmergencyNumber}
+                </p>
               )}
             </div>
           </div>
@@ -208,8 +220,8 @@ function PersonnelForm() {
             accept="image/*"
             capture="camera"
             onChange={handleImageChange}
-            required
           />
+          {imageError && <p className={classes.error}>{imageError}</p>}
           {actionData?.errors?.photoFileName && (
             <p className={classes.error}>{actionData.errors.photoFileName}</p>
           )}
@@ -224,18 +236,6 @@ function PersonnelForm() {
           )}
         </div>
 
-        {/* <div className={classes["input-group"]}>
-          <label htmlFor="photo">Upload Photo</label>
-          <input
-            type="file"
-            id="photo"
-            name="photoFileName"
-            accept="image/*"
-            capture="camera"
-            // onChange={handleImageChange}
-            required
-          />
-        </div> */}
         <Button size={"btn--block"}>
           {isSubmitting ? "Registering...." : "Register"}
         </Button>

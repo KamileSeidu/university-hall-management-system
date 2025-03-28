@@ -9,6 +9,7 @@ function StudentForm() {
   const navigation = useNavigation();
   const canvasRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imageError, setImageError] = useState(null);
   const isSubmitting = navigation.state === "submitting";
 
   const resizeImage = async (file) => {
@@ -51,6 +52,7 @@ function StudentForm() {
     const file = event.target.files[0];
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
+      setImageError(null); // Clear error when image is selected
       const resizedFile = await resizeImage(file);
 
       // Create a new FileList-like object with the resized image
@@ -62,12 +64,20 @@ function StudentForm() {
     }
   };
 
+  const handleSubmit = (event) => {
+    if (!selectedImage) {
+      event.preventDefault();
+      setImageError("Please select a photo");
+    }
+  };
+
   return (
     <div>
       <Form
         method="post"
         encType="multipart/form-data"
         className={classes.form}
+        onSubmit={handleSubmit}
       >
         <div className={classes.group}>
           <div className={classes["input-group"]}>
@@ -212,8 +222,8 @@ function StudentForm() {
             accept="image/*"
             capture="camera"
             onChange={handleImageChange}
-            required
           />
+          {imageError && <p className={classes.error}>{imageError}</p>}
           {actionData?.errors?.photoFileName && (
             <p className={classes.error}>{actionData.errors.photoFileName}</p>
           )}

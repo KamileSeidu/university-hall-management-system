@@ -5,9 +5,8 @@ import Icon from "./UI/icon";
 import { Link } from "react-router-dom";
 
 function StudentProfile({ student, onClose }) {
-  // console.log(student);
-  // console.log(student.photoFileName);
   const fullMiddleName = student.middleName ? student.middleName : "";
+  const imgUrl = import.meta.env.VITE_IMG_URL;
 
   return (
     <>
@@ -20,7 +19,7 @@ function StudentProfile({ student, onClose }) {
         <div className={classes.profile}>
           <img
             className={classes["profile__photo"]}
-            src={`http://localhost:3000/uploads/student-photos/${student.photoFileName}`}
+            src={`${imgUrl}/student-photos/${student.photoFileName}`}
             alt="profle-photo"
           />
           <h1>{`${student.firstName} ${fullMiddleName}, ${student.lastName}`}</h1>

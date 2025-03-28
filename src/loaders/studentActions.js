@@ -18,6 +18,8 @@ export const addNewStudentAction = async ({ request }) => {
   const programOfStudy = formData.get("programOfStudy");
   const photoFileName = formData.get("photoFileName");
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // Validation logic
   if (!studentId || !/^\d{8}$/.test(studentId)) {
     errors.studentId = "Student ID must be a valid 8-digit number.";
@@ -61,7 +63,7 @@ export const addNewStudentAction = async ({ request }) => {
   }
 
   try {
-    const response = await fetch("http://localhost:3000/api/students", {
+    const response = await fetch(`${apiUrl}/students`, {
       method: "POST",
       headers: {
         "x-auth-token": token,
@@ -85,6 +87,7 @@ export const editStudentAction = async ({ request, params }) => {
   const token = getAuthToken();
   const formData = await request.formData();
   const { studentId } = params;
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const errors = {};
 
@@ -142,16 +145,13 @@ export const editStudentAction = async ({ request, params }) => {
   }
 
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/students/${studentId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "x-auth-token": token,
-        },
-        body: formData,
-      }
-    );
+    const response = await fetch(`${apiUrl}/students/${studentId}`, {
+      method: "PATCH",
+      headers: {
+        "x-auth-token": token,
+      },
+      body: formData,
+    });
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -169,16 +169,16 @@ export const editStudentAction = async ({ request, params }) => {
 export const deleteStudentAction = async ({ params }) => {
   const token = getAuthToken();
   const { studentId } = params;
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/students/${studentId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "x-auth-token": token,
-        },
-      }
-    );
+    const response = await fetch(`${apiUrl}/students/${studentId}`, {
+      method: "DELETE",
+      headers: {
+        "x-auth-token": token,
+      },
+    });
 
     if (!response.ok) {
       const errorText = await response.text();
