@@ -10,12 +10,15 @@ export const addNewStudentAction = async ({ request }) => {
   // Extract fields from formData
   const studentId = formData.get("studentId");
   const phoneNumber = formData.get("phoneNumber");
+  const emmergencyNumber = formData.get("emmergencyNumber");
   const firstName = formData.get("firstName");
   const lastName = formData.get("lastName");
   const roomNumber = formData.get("roomNumber");
   const bedNumber = formData.get("bedNumber");
   const programOfStudy = formData.get("programOfStudy");
   const photoFileName = formData.get("photoFileName");
+
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   // Validation logic
   if (!studentId || !/^\d{8}$/.test(studentId)) {
@@ -27,6 +30,13 @@ export const addNewStudentAction = async ({ request }) => {
     !/^[0-9]{10}$/.test(phoneNumber)
   ) {
     errors.phoneNumber = "Phone number must be a valid 10-digit number.";
+  }
+  if (
+    !emmergencyNumber ||
+    emmergencyNumber.trim() === "" ||
+    !/^[0-9]{10}$/.test(emmergencyNumber)
+  ) {
+    errors.emmergencyNumber = "Phone number must be a valid 10-digit number.";
   }
   if (!firstName || firstName.trim() === "") {
     errors.firstName = "First name is required.";
@@ -53,7 +63,7 @@ export const addNewStudentAction = async ({ request }) => {
   }
 
   try {
-    const response = await fetch("http://localhost:3000/api/students", {
+    const response = await fetch(`${apiUrl}/students`, {
       method: "POST",
       headers: {
         "x-auth-token": token,
@@ -77,14 +87,17 @@ export const editStudentAction = async ({ request, params }) => {
   const token = getAuthToken();
   const formData = await request.formData();
   const { studentId } = params;
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const errors = {};
 
   // Extract fields from formData
   const student_Id = formData.get("studentId"); //Did some giminastics here to avoid studentId name clash
   const phoneNumber = formData.get("phoneNumber");
+  const emmergencyNumber = formData.get("emmergencyNumber");
   const firstName = formData.get("firstName");
   const lastName = formData.get("lastName");
+  // const middleName = formData.get("middleName");
   const roomNumber = formData.get("roomNumber");
   const bedNumber = formData.get("bedNumber");
   const programOfStudy = formData.get("programOfStudy");
@@ -100,12 +113,22 @@ export const editStudentAction = async ({ request, params }) => {
   ) {
     errors.phoneNumber = "Phone number must be a valid 10-digit number.";
   }
+  if (
+    !emmergencyNumber ||
+    emmergencyNumber.trim() === "" ||
+    !/^[0-9]{10}$/.test(emmergencyNumber)
+  ) {
+    errors.emmergencyNumber = "Phone number must be a valid 10-digit number.";
+  }
   if (!firstName || firstName.trim() === "") {
     errors.firstName = "First name is required.";
   }
   if (!lastName || lastName.trim() === "") {
     errors.lastName = "Last name is required.";
   }
+  // if (!middleName || middleName.trim() === "") {
+  //   errors.middleName = "Last name is required.";
+  // }
   if (!roomNumber || roomNumber.trim() === "") {
     errors.roomNumber = "Room number is required.";
   }
@@ -122,16 +145,13 @@ export const editStudentAction = async ({ request, params }) => {
   }
 
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/students/${studentId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "x-auth-token": token,
-        },
-        body: formData,
-      }
-    );
+    const response = await fetch(`${apiUrl}/students/${studentId}`, {
+      method: "PATCH",
+      headers: {
+        "x-auth-token": token,
+      },
+      body: formData,
+    });
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -149,16 +169,16 @@ export const editStudentAction = async ({ request, params }) => {
 export const deleteStudentAction = async ({ params }) => {
   const token = getAuthToken();
   const { studentId } = params;
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/students/${studentId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "x-auth-token": token,
-        },
-      }
-    );
+    const response = await fetch(`${apiUrl}/students/${studentId}`, {
+      method: "DELETE",
+      headers: {
+        "x-auth-token": token,
+      },
+    });
 
     if (!response.ok) {
       const errorText = await response.text();

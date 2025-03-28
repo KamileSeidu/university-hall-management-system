@@ -23,6 +23,7 @@ ChartJS.register(
 export default function LineGraph({ frequencyMap }) {
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top",

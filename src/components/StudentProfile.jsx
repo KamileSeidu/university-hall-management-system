@@ -1,30 +1,26 @@
 import classes from "./StudentProfile.module.css";
-import Button from "../components/UI/Button";
+import Button from "./UI/Button";
 import thumbs from "../assets/profileIcons/thumbs.svg";
 import Icon from "./UI/icon";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function StudentProfile() {
-  const student = useLoaderData();
-  const navigate = useNavigate();
-  const closeModalHandler = () => {
-    navigate(-1);
-  };
-
+function StudentProfile({ student, onClose }) {
   const fullMiddleName = student.middleName ? student.middleName : "";
+  const imgUrl = import.meta.env.VITE_IMG_URL;
 
   return (
     <>
-      <div className={classes.backdrop} onClick={closeModalHandler}></div>
+      <div className={classes.backdrop} onClick={onClose}></div>
       <div className={classes.modal}>
-        <Link to="/students" className={classes.link}>
+        <Link onClick={onClose} className={classes.link}>
           {" "}
           ✕
         </Link>
         <div className={classes.profile}>
           <img
-            src={`http://localhost:3000/uploads/student-photos/${student.photoFileName}`}
-            alt="Kamile-profle-photo"
+            className={classes["profile__photo"]}
+            src={`${imgUrl}/student-photos/${student.photoFileName}`}
+            alt="profle-photo"
           />
           <h1>{`${student.firstName} ${fullMiddleName}, ${student.lastName}`}</h1>
           <div className={classes["profile__info"]}>
@@ -42,21 +38,34 @@ function StudentProfile() {
             </div>
           </div>
           <div className={classes["profile__info"]}>
-            <Icon name="phone" />
-            <div>
-              <h2>Contact</h2>
-              <h3>{student.phoneNumber}</h3>
-            </div>
-          </div>
-          <div className={classes["profile__info"]}>
             <Icon name="book" />
             <div>
               <h2>Program</h2>
               <h3>{student.programOfStudy}</h3>
             </div>
           </div>
+          <div className={classes["profile__info--container"]}>
+            <div
+              className={`${classes["profile__info"]} ${classes["profile__info--contact"]}`}
+            >
+              <Icon name="phone" />
+              <div>
+                <h2>Contact</h2>
+                <h3>{student.phoneNumber}</h3>
+              </div>
+            </div>
+            <div
+              className={`${classes["profile__info"]} ${classes["profile__info--emmergency"]}`}
+            >
+              <Icon name="phone" />
+              <div>
+                <h2>Emmergency Contact</h2>
+                <h3>{student.emmergencyNumber}</h3>
+              </div>
+            </div>
+          </div>
         </div>
-        <Button size="btn--block" onClick={closeModalHandler}>
+        <Button size="btn--block" onClick={onClose}>
           V-Mate <img src={thumbs} className={classes.thumbs} alt="thumbs-up" />
         </Button>
       </div>

@@ -1,0 +1,168 @@
+import editIcon from "../../assets/edit.svg";
+import deleteIcon from "../../assets/delete.svg";
+import checkIn from "../../assets/check-in.svg";
+import checkOut from "../../assets/check-out.svg";
+import classes from "./PersonnelDetails.module.css";
+import { Link, useNavigate, useSubmit } from "react-router-dom";
+import { useState } from "react";
+import { getAuthToken } from "../../loaders/getToken";
+
+function PersonnelDetails({
+  _id,
+  nssNumber,
+  roomNumber,
+  bedNumber,
+  firstName,
+  middleName,
+  lastName,
+  placeOfWork,
+  registeredAt,
+  isSignedIn = false,
+  fetchPersonnels,
+  onSelect, //new
+}) {
+  const [loading, setLoading] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState(isSignedIn);
+  const token = getAuthToken();
+  const dateOnly = registeredAt.slice(0, 10);
+  // const submit = useSubmit();
+  const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  function handleEdithandler() {
+    navigate(`/nss-personnels/${_id}/edit`);
+  }
+
+  const middleNameAbbreviation = middleName ? middleName.slice(0, 1) : "";
+
+  //New
+  async function startDeleteHandler() {
+    const proceed = window.confirm("Are you sure you want to delete?");
+
+    if (proceed) {
+      try {
+        const response = await fetch(`${apiUrl}/nssPersonnels/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": token,
+          },
+        });
+
+        if (!response.ok) {
+          const error = await response.text();
+          throw new Error(error || "Failed to delete personnel");
+        }
+
+        // Refresh the list immediately after successful deletion
+        fetchPersonnels();
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  }
+
+  async function handleSignInOut(action) {
+    if (loading) return;
+
+    const actionVariable = action === "signin" ? "signin" : "signout";
+    const proceed = window.confirm(
+      `Are you sure you want to ${actionVariable} ?`
+    );
+
+    if (proceed) {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `${apiUrl}/nssPersonnels/${_id}/${action}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token": token,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          const error = await response.text();
+          throw new Error(error || `Failed to ${action}`);
+        }
+
+        // Update local state
+        setCurrentStatus(action === "signin");
+
+        fetchPersonnels();
+        // console.log(` I have been executed ${fetchPersonnels}`);
+
+        // Optional: Show success message
+        const actionText = action === "signin" ? "signed in" : "signed out";
+        alert(`Personnel successfully ${actionText}`);
+      } catch (error) {
+        alert(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  }
+
+  return (
+    <>
+      <li className={classes["personnel-info"]}>
+        <Link onClick={onSelect} className={classes.link}>
+          <ul className={classes["personnel-info-list"]}>
+            <li>{nssNumber}</li>
+            <li>{`${firstName} ${middleNameAbbreviation}${
+              middleName ? "." : ""
+            } ${lastName}`}</li>
+            <li>{`${roomNumber} - ${bedNumber}`}</li>
+            {/* <li>{bedNumber}</li> */}
+            <li>{placeOfWork}</li>
+            <li>{dateOnly}</li>
+          </ul>
+        </Link>
+        <p className={classes.action}>
+          {/* Show check-in button only when signed out */}
+          {!currentStatus && (
+            <button
+              className={classes[`check-in`]}
+              onClick={() => handleSignInOut("signin")}
+              disabled={loading}
+              title="Sign in personnel"
+            >
+              <img src={checkIn} alt="check-in" />
+            </button>
+          )}
+
+          {/* Show check-out button only when signed in */}
+          {currentStatus && (
+            <button
+              className={classes[`check-out`]}
+              onClick={() => handleSignInOut("signout")}
+              disabled={loading}
+              title="Sign out personnel"
+            >
+              <img src={checkOut} alt="check-out" />
+            </button>
+          )}
+          <button
+            className={classes.edit}
+            onClick={handleEdithandler}
+            title="Edit personnel record"
+          >
+            <img src={editIcon} alt="edit" />
+          </button>
+          <button
+            className={classes.delete}
+            onClick={startDeleteHandler}
+            title="Delete personnel record"
+          >
+            <img src={deleteIcon} alt="delete" />
+          </button>
+        </p>
+      </li>
+    </>
+  );
+}
+
+export default PersonnelDetails;

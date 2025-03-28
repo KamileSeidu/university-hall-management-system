@@ -5,8 +5,10 @@ export async function loginAction({ request }) {
   const email = formData.get("email");
   const password = formData.get("password");
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   try {
-    const response = await fetch("http://localhost:3000/api/auth", {
+    const response = await fetch(`${apiUrl}/auth`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,11 +28,6 @@ export async function loginAction({ request }) {
 
     // Store the token in localStorage
     localStorage.setItem("token", data.token);
-
-    //calculating the expiration date of the token
-    // const expiration = new Date();
-    // expiration.setHours(expiration.getHours() + 1);
-    // localStorage.setItem("expiration", expiration.toISOString());
 
     // Redirect to dashboard or home page after successful login
     return redirect("/");

@@ -1,0 +1,5 @@
+.room-members {
+  padding: 2rem 0 0 0;
+  border-radius: 8px;
+  overflow: auto;
+}

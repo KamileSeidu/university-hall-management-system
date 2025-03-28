@@ -6,9 +6,11 @@ import { useLoaderData } from "react-router-dom";
 function DashboardPage() {
   const hallData = useLoaderData();
 
+  // console.log(hallData.hallBlocks);
+
   return (
     <div className={classes.container}>
-      <StudentsOverview students={hallData.students} />
+      <StudentsOverview rooms={hallData.rooms} students={hallData.students} />
       <HallBlocks hallBlocks={hallData.hallBlocks} />
     </div>
   );

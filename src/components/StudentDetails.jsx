@@ -1,79 +1,3 @@
-// import editIcon from "../assets/edit.svg";
-// import deleteIcon from "../assets/delete.svg";
-// import checkIn from "../assets/check-in.svg";
-// import checkOut from "../assets/check-out.svg";
-// import classes from "./StudentDetails.module.css";
-// import { Link, useNavigate, useSubmit } from "react-router-dom";
-// // import { useState, useEffect } from "react";
-// // import { getAuthToken } from "../loaders/getToken"; //
-
-// function StudentDetails({
-//   _id,
-//   studentId,
-//   roomNumber,
-//   bedNumber,
-//   firstName,
-//   middleName,
-//   lastName,
-//   programOfStudy,
-//   registeredAt,
-// }) {
-//   // const token = getAuthToken(); // Get the token from local storage
-
-//   const dateOnly = registeredAt.slice(0, 10);
-//   const submit = useSubmit();
-//   const navigate = useNavigate();
-
-//   function handleEdithandler() {
-//     navigate(`/students/${_id}/edit`);
-//   }
-
-//   const middleNameAbbreviation = middleName ? middleName.slice(0, 1) : "";
-
-//   function startDeleteHandler() {
-//     const proceed = window.confirm("Are you sure you want to delete?");
-
-//     if (proceed) {
-//       submit(null, { method: "DELETE", action: `/students/${_id}` });
-//     }
-//   }
-
-//   return (
-//     <>
-//       <li className={classes["student-info"]}>
-//         <Link to={`/students/${_id}`} className={classes.link}>
-//           <ul className={classes["student-info-list"]}>
-//             <li>{studentId}</li>
-//             <li>{`${firstName} ${middleNameAbbreviation}${
-//               middleName ? "." : ""
-//             } ${lastName}`}</li>
-//             <li>{roomNumber}</li>
-//             <li>{bedNumber}</li>
-//             <li>{programOfStudy}</li>
-//             <li>{dateOnly}</li>
-//           </ul>
-//         </Link>
-//         <p className={classes.action}>
-//           <button className={classes[`check-in`]}>
-//             <img src={checkIn} alt="edit-icon" />
-//           </button>
-//           <button className={classes[`check-out`]}>
-//             <img src={checkOut} alt="edit-icon" />
-//           </button>
-//           <button className={classes.edit} onClick={handleEdithandler}>
-//             <img src={editIcon} alt="edit-icon" />
-//           </button>
-//           <button className={classes.delete} onClick={startDeleteHandler}>
-//             <img src={deleteIcon} alt="delete-icon" />
-//           </button>
-//         </p>
-//       </li>
-//     </>
-//   );
-// }
-
-// export default StudentDetails;
-
 import editIcon from "../assets/edit.svg";
 import deleteIcon from "../assets/delete.svg";
 import checkIn from "../assets/check-in.svg";
@@ -95,15 +19,16 @@ function StudentDetails({
   registeredAt,
   isSignedIn = false,
   fetchStudents,
+  onSelect,
 }) {
   const [loading, setLoading] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(isSignedIn);
   const token = getAuthToken();
   const dateOnly = registeredAt.slice(0, 10);
-  const submit = useSubmit();
+  // const submit = useSubmit();
   const navigate = useNavigate();
 
-  // console.log(fetchStudents);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   function handleEdithandler() {
     navigate(`/students/${_id}/edit`);
@@ -111,11 +36,29 @@ function StudentDetails({
 
   const middleNameAbbreviation = middleName ? middleName.slice(0, 1) : "";
 
-  function startDeleteHandler() {
+  async function startDeleteHandler() {
     const proceed = window.confirm("Are you sure you want to delete?");
 
     if (proceed) {
-      submit(null, { method: "DELETE", action: `/students/${_id}` });
+      try {
+        const response = await fetch(`${apiUrl}/students/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": token,
+          },
+        });
+
+        if (!response.ok) {
+          const error = await response.text();
+          throw new Error(error || "Failed to delete student");
+        }
+
+        // Refresh the list immediately after successful deletion
+        fetchStudents();
+      } catch (error) {
+        alert(error.message);
+      }
     }
   }
 
@@ -130,16 +73,13 @@ function StudentDetails({
     if (proceed) {
       try {
         setLoading(true);
-        const response = await fetch(
-          `http://localhost:3000/api/students/${_id}/${action}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-auth-token": token,
-            },
-          }
-        );
+        const response = await fetch(`${apiUrl}/students/${_id}/${action}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": token,
+          },
+        });
 
         if (!response.ok) {
           const error = await response.text();
@@ -166,7 +106,7 @@ function StudentDetails({
   return (
     <>
       <li className={classes["student-info"]}>
-        <Link to={`/students/${_id}`} className={classes.link}>
+        <Link onClick={onSelect} className={classes.link}>
           <ul className={classes["student-info-list"]}>
             <li>{studentId}</li>
             <li>{`${firstName} ${middleNameAbbreviation}${

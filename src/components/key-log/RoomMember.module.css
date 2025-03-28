@@ -1,0 +1,29 @@
+.room-member {
+  display: grid;
+  grid-template-columns: 200px 400px 150px auto 130px;
+  justify-items: start;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 2rem;
+}
+
+.room-member p {
+  /* color: black; */
+  /* align-self: center; */
+}
+
+.btn {
+  color: white;
+  border-radius: 24px;
+  outline: none;
+  border: 0;
+  padding: 1.2rem 4.3rem;
+  cursor: pointer;
+}
+
+.btn--verify {
+  background-color: dodgerblue;
+  justify-self: end;
+  /* justify-self: end; */
+  /* flex: 1; */
+}

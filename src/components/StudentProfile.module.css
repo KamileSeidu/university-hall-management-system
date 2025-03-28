@@ -9,11 +9,15 @@
   font-size: 2.7rem;
 }
 
-.profile img {
+.profile__photo {
   width: 400px;
   height: 400px;
   border-radius: 50%;
 }
+
+/* .profile img {
+  
+} */
 
 .profile__info {
   display: flex;
@@ -36,6 +40,17 @@
   font-size: 1.4rem;
 }
 
+.profile__info--container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.profile__info--container .profile__info.profile__info--emmergency {
+  flex-grow: 1;
+}
+
 .thumbs {
   width: 25px;
   height: 25px;
@@ -55,7 +70,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
   overflow-y: auto;
-  max-height: 95vh;
+  max-height: 96vh;
   animation: slideIn 0.3s ease-out;
 }
 
@@ -72,11 +87,11 @@
 
 .link {
   text-decoration: none;
-  color: inherit; /* Inherit the color from the parent, or specify a custom color */
+  color: inherit;
 }
 
 .link:hover {
-  color: #007bff; /* Optional: Change color on hover */
+  color: #007bff;
 }
 
 /* Animations */
@@ -120,10 +135,14 @@
     font-size: 2.2rem;
   }
 
-  .profile img {
+  .profile__photo {
     width: 200px;
     height: 200px;
   }
+
+  /* .profile img {
+   
+  } */
 
   .profile__info {
     gap: 15px;

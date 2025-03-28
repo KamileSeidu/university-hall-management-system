@@ -1,0 +1,98 @@
+.personnel-info {
+  display: grid;
+  grid-template-columns: auto 200px;
+  padding: 2rem;
+  transition: background-color 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.personnel-info li {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 400;
+  list-style: none;
+}
+
+.personnel-info:hover {
+  background-color: #dddddd;
+}
+
+.personnel-info-list {
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 150px 350px 170px 400px 200px;
+}
+
+.action {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+}
+
+.action button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  transition: filter 0.3s ease-in-out;
+}
+
+.action .check-in {
+  background-color: green;
+}
+
+.action .check-out {
+  background-color: red;
+}
+
+.action .edit {
+  background-color: #0d89f0;
+}
+
+.action .delete {
+  background-color: orange;
+}
+
+.action .check-in:hover {
+  filter: brightness(0.9);
+}
+
+.action .check-out:hover {
+  filter: brightness(0.9);
+}
+
+.action .edit:hover {
+  background-color: #0572ca;
+}
+.action .delete:hover {
+  background-color: rgb(185, 125, 11);
+}
+
+.action img {
+  width: 30px;
+  height: 30px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit; /* Inherit the color from the parent, or specify a custom color */
+}
+
+.link:hover {
+  color: #007bff; /* Optional: Change color on hover */
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Optional: Add hover effect for active buttons */
+.check-in:not(.disabled):hover,
+.check-out:not(.disabled):hover,
+.edit:hover,
+.delete:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}

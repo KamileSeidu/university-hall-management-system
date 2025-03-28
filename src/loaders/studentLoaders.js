@@ -1,9 +1,10 @@
 import { getAuthToken } from "./getToken";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const studentsLoader = async () => {
   const token = getAuthToken();
 
-  const response = await fetch("http://localhost:3000/api/students", {
+  const response = await fetch(`${apiUrl}/students`, {
     headers: {
       "x-auth-token": token,
     },
@@ -24,7 +25,7 @@ export const studentsLoader = async () => {
 export const studentDetailsLoader = async ({ params }) => {
   const id = params.studentId;
   const token = getAuthToken();
-  const response = await fetch(`http://localhost:3000/api/students/${id}`, {
+  const response = await fetch(`${apiUrl}/students/${id}`, {
     headers: {
       "x-auth-token": token,
     },
